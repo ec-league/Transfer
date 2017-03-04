@@ -1,7 +1,8 @@
 # Transfer
 该项目主要是来源于携程的Hackathon的项目
 
----
+[![Build Status](https://travis-ci.org/ec-league/Transfer.svg?branch=master)](https://travis-ci.org/ec-league/Transfer)
+[![codecov](https://codecov.io/gh/ec-league/Transfer/branch/master/graph/badge.svg)](https://codecov.io/gh/ec-league/Transfer)
 
 ## Context
 
