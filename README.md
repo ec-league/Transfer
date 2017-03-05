@@ -69,3 +69,10 @@
 
 代码中，`com.ecleague.parser.CsprojParser`将会读取一个目录，遍历目录下的所有的`csproj`文件，来生成对应的`CsConfiguration`实体。
 
+### Abstract Syntax Tree
+
+抽象语法树基本构造如下图：
+
+![](doc/AST.png)
+
+之后根据每个抽象节点，单独实现对应的解析代码。
