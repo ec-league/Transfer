@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F5698714-BABA-4516-BB01-6E464CE49092}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ServiceLayer</RootNamespace>
+    <AssemblyName>Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CServiceStack.Mega, Version=2.0.9.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\Lib\Framework\Release\CServiceStack.Mega.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.Flight.IntlEngine.Entity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\IntlAggregatorDll\Version97.0\Ctrip.Flight.IntlEngine.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.FlightFare.ATPCORBDServiceEntity">
+      <HintPath>..\..\..\IntlAggregatorDll\Ctrip.FlightFare.ATPCORBDServiceEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.SOA.Comm">
+      <HintPath>..\..\..\Common\Lib\Framework\Release\Ctrip.SOA.Comm.dll</HintPath>
+    </Reference>
+    <Reference Include="Flight.Switch.Engine.TFQueryService.Entity">
+      <HintPath>..\..\..\IntlAggregatorDll\Version25.0\Flight.Switch.Engine.TFQueryService.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Flight.Switch.SOAInterface">
+      <HintPath>..\..\..\IntlAggregatorDll\OAG\Flight.Switch.SOAInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="FlightIntl.GDS.VauleAdd.Service.Entity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\IntlAggregatorDll\Version102.0\FlightIntl.GDS.VauleAdd.Service.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Payment.Promocode.DataContract">
+      <HintPath>..\..\..\Common\SOAEntity\4\Platform\Payment.Promocode.DataContract.dll</HintPath>
+    </Reference>
+    <Reference Include="Promocode.SOA.Client">
+      <HintPath>..\..\..\IntlAggregatorDll\SOA2.0\Promocode.SOA.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ancillaries\AbstractAncillariesEsbService.cs" />
+    <Compile Include="Ancillaries\AncillariesConsolidatorEsbService.cs" />
+    <Compile Include="Ancillaries\AncillariesNewTravelFusionEsbService.cs" />
+    <Compile Include="Ancillaries\SpecialSearch\AncillariesConsolidatorBaseInfoService.cs" />
+    <Compile Include="CouponService.cs" />
+    <Compile Include="exception\ESBNoResultException.cs" />
+    <Compile Include="exception\ESBSerializationException.cs" />
+    <Compile Include="EsbService.cs" />
+    <Compile Include="exception\ESBServiceException.cs" />
+    <Compile Include="exception\ESBTimeoutException.cs" />
+    <Compile Include="exception\ResultCode.cs" />
+    <Compile Include="IService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataManagerLayer\CacheManager\CacheManager.csproj">
+      <Project>{31ddccca-42e2-443c-846d-ee4bfa6966ba}</Project>
+      <Name>CacheManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DomainModel\DomainModel.csproj">
+      <Project>{e59b87b5-48ba-4030-aeb8-2be9ce11a615}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utilities\Utilities.csproj">
+      <Project>{25714DCC-488E-4A66-9B5F-E4DFD2D6EE77}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

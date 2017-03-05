@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E95E3AE1-A83A-4694-B7CA-FD729ED984E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UnitTests</RootNamespace>
+    <AssemblyName>UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Arch.CFX">
+      <HintPath>..\..\Common\Lib\Framework\Release\Arch.CFX.dll</HintPath>
+    </Reference>
+    <Reference Include="CServiceStack.Mega">
+      <HintPath>..\..\Common\Lib\Framework\Release\CServiceStack.Mega.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.API.Util.Serializer">
+      <HintPath>..\..\IntlAggregatorDll\Ctrip.API.Util.Serializer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.Flight.TradeCommon.SOAService">
+      <HintPath>..\..\IntlAggregatorDll\Ctrip.Flight.TradeCommon.SOAService.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.Shopping.Chic.Services.User.Client">
+      <HintPath>..\..\IntlAggregatorDll\Ctrip.Shopping.Chic.Services.User.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.SOA.Comm">
+      <HintPath>..\..\Common\Lib\Framework\Release\Ctrip.SOA.Comm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Common\Lib\Framework\Release\EL5\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Common\Lib\Framework\Release\EL5\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Common\Lib\Framework\Release\EL5\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Common\Lib\Framework\Release\EL5\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Common\Lib\Framework\Release\EL5\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Common\Lib\Framework\Release\EL5\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Common\Lib\Framework\Release\EL5\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\..\Flight\CommonDll\CommDll\CommDll\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractProductMatcherTest.cs" />
+    <Compile Include="Ancillaries\AncillariesProductMatcherTest.cs" />
+    <Compile Include="CarRental\CarRentalProductByIdMatcherTest.cs" />
+    <Compile Include="CarRental\CarRentalRulesMatcherTest.cs" />
+    <Compile Include="ConfigurationHelperTests.cs" />
+    <Compile Include="CouponCityPriorityCacheTest.cs" />
+    <Compile Include="DomainModel\FlightCarTransportationTest.cs" />
+    <Compile Include="DomainModel\Prepose\PreposeProductTest.cs" />
+    <Compile Include="DomainModel\YoyageModels\VoyageEntityTest.cs" />
+    <Compile Include="EffectTimeRangeTest.cs" />
+    <Compile Include="FinancialCouponMatchEntityTests.cs" />
+    <Compile Include="FinancialCoupon\FinancialCouponCacheManagerTest.cs" />
+    <Compile Include="FinancialCoupon\FinancialCouponProductByIdMatcherTest.cs" />
+    <Compile Include="FinancialCoupon\FinancialCouponProductMatcherTest.cs" />
+    <Compile Include="FlightCarTransportation\FlightCarTransportationProductByIdMatcherTest.cs" />
+    <Compile Include="FlightCarTransportation\FlightCarTransportationProductMatcherTest.cs" />
+    <Compile Include="FlightPickupCoupon\FlightPickupCouponComparerTest.cs" />
+    <Compile Include="FlightPickupCoupon\FlightPickupCouponMatchEntityTest.cs" />
+    <Compile Include="FlightPickupCoupon\FlightPickupCouponTest.cs" />
+    <Compile Include="FlightProductGroupTests.cs" />
+    <Compile Include="FlightProductManagerTest.cs" />
+    <Compile Include="Gift\GiftProductByIdMatcherTest.cs" />
+    <Compile Include="IntlCache\Cache\AggSearchExternalServiceTest.cs" />
+    <Compile Include="LoungeExtendCache\LoungeExtendCacheTest.cs" />
+    <Compile Include="Lounge\ComboProductEntityTest.cs" />
+    <Compile Include="Lounge\LoungeExtendProductByIdMatcherTest.cs" />
+    <Compile Include="Lounge\LoungeExtendProductMatcherTest.cs" />
+    <Compile Include="Lounge\LoungePolicyTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchContextTest.cs" />
+    <Compile Include="ServiceLayer\Service\AbstractAncillariesEsbServiceTest.cs" />
+    <Compile Include="TestHelper\TestDriver.cs" />
+    <Compile Include="TripTypeTest.cs" />
+    <Compile Include="Upgrade\UpgradeProductByIdMatcherTest.cs" />
+    <Compile Include="Upgrade\UpgradeProductEntityTest.cs" />
+    <Compile Include="Upgrade\UpgradeProductMatcherTest.cs" />
+    <Compile Include="Upgrade\UpgradeProductTest.cs" />
+    <Compile Include="Upgrade\UpgradeRulesMatcherTest.cs" />
+    <Compile Include="Validator\RequestValidatorTest.cs" />
+    <Compile Include="Voyage\CacheManagerTest.cs" />
+    <Compile Include="Voyage\ProtoBufTest.cs" />
+    <Compile Include="Voyage\VoyageInfoMatcherTest.cs" />
+    <Compile Include="Voyage\VoyageProductByIdMatcherTest.cs" />
+    <Compile Include="Voyage\VoyageProductMatcherTest.cs" />
+    <Compile Include="WiFi\WiFiInventoryProductByIdMatcherTest.cs" />
+    <Compile Include="WiFi\WiFiMatchEntityTest.cs" />
+    <Compile Include="WiFi\WiFiPolicyTest.cs" />
+    <Compile Include="WiFi\WiFiProductByIdMatcherTest.cs" />
+    <Compile Include="WiFi\WiFiProductMatcherTest.cs" />
+    <Compile Include="WiFi\WiFiRulesMatcherTest.cs" />
+    <Compile Include="XProductSearchCriteriaTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BussinessLayer\BussinessManager\BussinessManager.csproj">
+      <Project>{4a0260e8-3d7f-4128-a70b-616ac25a6677}</Project>
+      <Name>BussinessManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BussinessLayer\Validator\Validator.csproj">
+      <Project>{7E404293-B007-468D-9B14-EE0678DBD92E}</Project>
+      <Name>Validator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataManagerLayer\CacheManager\CacheManager.csproj">
+      <Project>{31DDCCCA-42E2-443C-846D-EE4BFA6966BA}</Project>
+      <Name>CacheManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataManagerLayer\DataManager\DataAccessManager.csproj">
+      <Project>{C972134A-A0E8-4013-AF56-51EE22CC6EA2}</Project>
+      <Name>DataAccessManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{E59B87B5-48BA-4030-AEB8-2BE9CE11A615}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityLayer\Convertor\Converter.csproj">
+      <Project>{BF389601-81A1-4E2A-83D2-9CA9EB992AE9}</Project>
+      <Name>Converter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContractLayer\Server\ContractMetadata.csproj">
+      <Project>{ce31c712-4803-4233-9109-624c84cc8b26}</Project>
+      <Name>ContractMetadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntlCacheOperation\IntlCacheOperation.csproj">
+      <Project>{DA5244C3-E831-4704-8890-CEA21C8C8CF4}</Project>
+      <Name>IntlCacheOperation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLayer\ServiceLayer\Service.csproj">
+      <Project>{F5698714-BABA-4516-BB01-6E464CE49092}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{25714DCC-488E-4A66-9B5F-E4DFD2D6EE77}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Config\AppSetting.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Cache.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\DatabaseMap.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Log.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReleaseInfo.config.info">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

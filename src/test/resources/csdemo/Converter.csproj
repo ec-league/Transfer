@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BF389601-81A1-4E2A-83D2-9CA9EB992AE9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Convertor</RootNamespace>
+    <AssemblyName>Convertor</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CServiceStack.Mega, Version=2.0.9.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\Lib\Framework\Release\CServiceStack.Mega.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.Api.Flight.Data.Common.V2">
+      <HintPath>..\..\..\IntlAggregatorDll\SearchClient\Ctrip.Api.Flight.Data.Common.V2.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.Shopping.Chic.Services.User.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\IntlAggregatorDll\Ctrip.Shopping.Chic.Services.User.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrip.SOA.Comm">
+      <HintPath>..\..\..\Common\Lib\Framework\Release\Ctrip.SOA.Comm.dll</HintPath>
+    </Reference>
+    <Reference Include="IntlFlightSearchClient">
+      <HintPath>..\..\..\IntlAggregatorDll\SearchClient\IntlFlightSearchClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MessageConvertException.cs" />
+    <Compile Include="RequestConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseConverter.cs" />
+    <Compile Include="VoyageResultConvertor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataManagerLayer\CacheManager\CacheManager.csproj">
+      <Project>{31ddccca-42e2-443c-846d-ee4bfa6966ba}</Project>
+      <Name>CacheManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DomainModel\DomainModel.csproj">
+      <Project>{E59B87B5-48BA-4030-AEB8-2BE9CE11A615}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ContractLayer\Server\ContractMetadata.csproj">
+      <Project>{ce31c712-4803-4233-9109-624c84cc8b26}</Project>
+      <Name>ContractMetadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utilities\Utilities.csproj">
+      <Project>{25714DCC-488E-4A66-9B5F-E4DFD2D6EE77}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BussinessLayer\Validator\Validator.csproj">
+      <Project>{7e404293-b007-468d-9b14-ee0678dbd92e}</Project>
+      <Name>Validator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

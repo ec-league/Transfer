@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{31DDCCCA-42E2-443C-846D-EE4BFA6966BA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ctrip.IntlFlight.XProductSearch.CacheManager</RootNamespace>
+    <AssemblyName>Ctrip.IntlFlight.XProductSearch.CacheManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CacheFactory.cs" />
+    <Compile Include="CacheService.cs" />
+    <Compile Include="Cache\AgentCache.cs" />
+    <Compile Include="Cache\AirPortBuildingCache.cs" />
+    <Compile Include="Cache\AncillariesProductsAgentsCache.cs" />
+    <Compile Include="Cache\CarCouponCache.cs" />
+    <Compile Include="Cache\CashCache.cs" />
+    <Compile Include="Cache\ClassMappingCache.cs" />
+    <Compile Include="Cache\ComboProductConfigureCache.cs" />
+    <Compile Include="Cache\ComboProductPriceStrategyCache.cs" />
+    <Compile Include="Cache\CouponCityPriorityCache.cs" />
+    <Compile Include="Cache\CityAreaCache.cs" />
+    <Compile Include="Cache\FlightCarTransportationCache.cs" />
+    <Compile Include="Cache\FlightInfoCache.cs" />
+    <Compile Include="Cache\FlightPickupCouponCache.cs" />
+    <Compile Include="Cache\LoungeExtendCache.cs" />
+    <Compile Include="Cache\UpgradeProductCache.cs" />
+    <Compile Include="Cache\VoyageInfoCache.cs" />
+    <Compile Include="Cache\WiFiCache.cs" />
+    <Compile Include="Cache\XProductPreposePolicyCache.cs" />
+    <Compile Include="Interface\IAgentCache.cs" />
+    <Compile Include="Interface\IAirPortBuildingCache.cs" />
+    <Compile Include="Interface\IAncillariesProductsAgentsCache.cs" />
+    <Compile Include="Interface\ICarCouponCache.cs" />
+    <Compile Include="Interface\ICashCache.cs" />
+    <Compile Include="Interface\ICityAreaCache.cs" />
+    <Compile Include="Interface\IClassMappingCache.cs" />
+    <Compile Include="Interface\IComboProductConfigureCache.cs" />
+    <Compile Include="Interface\IComboProductPriceStrategyCache.cs" />
+    <Compile Include="Interface\ICouponCityPriorityCache.cs" />
+    <Compile Include="Interface\ICacheAware.cs" />
+    <Compile Include="Interface\ICacheUpdatable.cs" />
+    <Compile Include="Interface\IFlightCarTransportationCache.cs" />
+    <Compile Include="Interface\IFlightInfoCache.cs" />
+    <Compile Include="Interface\IFlightPickupCouponCache.cs" />
+    <Compile Include="Interface\ILoungeExtendCache.cs" />
+    <Compile Include="Interface\IUpgradeProductCache.cs" />
+    <Compile Include="Interface\IVoyageInfoCache.cs" />
+    <Compile Include="Interface\IWiFiPolicyCache.cs" />
+    <Compile Include="Interface\IXProductPreposePolicyCache.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DomainModel\DomainModel.csproj">
+      <Project>{E59B87B5-48BA-4030-AEB8-2BE9CE11A615}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utilities\Utilities.csproj">
+      <Project>{25714DCC-488E-4A66-9B5F-E4DFD2D6EE77}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataManager\DataAccessManager.csproj">
+      <Project>{C972134A-A0E8-4013-AF56-51EE22CC6EA2}</Project>
+      <Name>DataAccessManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
