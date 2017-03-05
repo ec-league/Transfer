@@ -1,24 +1,25 @@
-package com.ecleague.parser.domain;
+package com.ecleague.parser.domain.impl;
 
 import java.io.File;
 
+import com.ecleague.parser.domain.impl.CsProjectImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * CsProject Tester.
+ * CsProjectImpl Tester.
  * 
  * @author EthanPark
  * @version 1.0
  */
-public class CsProjectTest {
+public class CsProjectImplTest {
 
    @Test
    public void testInitBasicInfo() {
       File file = new File(this.getClass().getResource("/").getPath()
             + "csdemo/XProductSearch.csproj");
 
-      CsProject project = new CsProject(file);
+      CsProjectImpl project = new CsProjectImpl(file);
 
       project.initBasicInfo();
 

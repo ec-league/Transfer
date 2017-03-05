@@ -10,4 +10,8 @@ public class ParseCsprojException extends RuntimeException {
    public ParseCsprojException(String msg, Exception ex) {
       super(msg, ex);
    }
+
+   public ParseCsprojException(String msg) {
+      super(msg);
+   }
 }
