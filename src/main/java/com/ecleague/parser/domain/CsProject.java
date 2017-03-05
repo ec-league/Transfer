@@ -11,13 +11,6 @@ import java.util.Map;
 public interface CsProject {
 
    /**
-    * Rely on an project.
-    * 
-    * @param project
-    */
-   void relyOnProject(CsProject project);
-
-   /**
     * Init all the cs project dependencies.
     * 
     * @param projectMap

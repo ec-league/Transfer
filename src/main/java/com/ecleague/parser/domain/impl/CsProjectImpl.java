@@ -28,10 +28,6 @@ public class CsProjectImpl implements CsProject {
 
    private List<CsSourceFile> csSourceFiles;
 
-   public CsProjectImpl() {
-
-   }
-
    public CsProjectImpl(File file) {
       path = file.getParent();
       name = file.getName();
@@ -127,24 +123,8 @@ public class CsProjectImpl implements CsProject {
       return dependProjects;
    }
 
-   public void setDependProjects(Set<CsProject> dependProjects) {
-      this.dependProjects = dependProjects;
-   }
-
-   public Set<CsProject> getRelyOnProjects() {
-      return relyOnProjects;
-   }
-
-   public void setRelyOnProjects(Set<CsProject> relyOnProjects) {
-      this.relyOnProjects = relyOnProjects;
-   }
-
    public String getPath() {
       return path;
-   }
-
-   public void setPath(String path) {
-      this.path = path;
    }
 
    @Override
@@ -172,23 +152,6 @@ public class CsProjectImpl implements CsProject {
          return;
 
       relyOnProjects.removeAll(csProjects);
-   }
-
-   public void setCsSourceFiles(List<CsSourceFile> csSourceFiles) {
-      this.csSourceFiles = csSourceFiles;
-   }
-
-   /**
-    * Rely on an project.
-    *
-    * @param project
-    */
-   @Override
-   public void relyOnProject(CsProject project) {
-      if (relyOnProjects == null)
-         relyOnProjects = new HashSet<>();
-
-      relyOnProjects.add(project);
    }
 
    @Override

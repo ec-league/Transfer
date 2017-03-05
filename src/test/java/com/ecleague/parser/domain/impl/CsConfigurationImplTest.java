@@ -23,7 +23,27 @@ public class CsConfigurationImplTest {
     */
    @Test
    public void testListSourceFiles() throws Exception {
-      //TODO: Test goes here... 
+      File directory = new File(this.getClass().getResource("/").getPath());
+
+      CsConfiguration configuration = new CsConfigurationImpl(directory);
+
+      Assert.assertNotNull(configuration);
+
+      Assert.assertTrue(configuration.listSourceFiles().size() > 0);
+   }
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testConstructor1() {
+      File directory = new File(this.getClass().getResource("/").getPath() + "/BussinessManager.csproj");
+
+      CsConfiguration configuration = new CsConfigurationImpl(directory);
+   }
+
+   @Test(expected = NullPointerException.class)
+   public void testConstructor2() {
+      File directory = null;
+
+      CsConfiguration configuration = new CsConfigurationImpl(directory);
    }
 
    /**
