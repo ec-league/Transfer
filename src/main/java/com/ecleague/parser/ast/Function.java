@@ -73,7 +73,7 @@ public class Function implements SourceParser {
     * @param sourceCode
     */
    @Override
-   public void parse(String sourceCode) {
-
+   public String parse(String sourceCode) {
+      return null;
    }
 }

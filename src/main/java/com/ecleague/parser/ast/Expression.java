@@ -5,7 +5,7 @@ package com.ecleague.parser.ast;
  * Date: 2017/3/6<br/>
  * Email: byp5303628@hotmail.com
  */
-public class Expression implements SourceParser{
+public class Expression implements SourceParser {
    private ArgType assignParam;
 
    private Operation operation;
@@ -32,7 +32,7 @@ public class Expression implements SourceParser{
     * @param sourceCode
     */
    @Override
-   public void parse(String sourceCode) {
-
+   public String parse(String sourceCode) {
+      return null;
    }
 }

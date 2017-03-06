@@ -7,7 +7,7 @@ import java.util.List;
  * Date: 2017/3/5<br/>
  * Email: byp5303628@hotmail.com
  */
-public class Program implements SourceParser{
+public class Program implements SourceParser {
    private List<Clazz> clazzes;
 
 
@@ -17,7 +17,7 @@ public class Program implements SourceParser{
     * @param sourceCode
     */
    @Override
-   public void parse(String sourceCode) {
-
+   public String parse(String sourceCode) {
+      return null;
    }
 }

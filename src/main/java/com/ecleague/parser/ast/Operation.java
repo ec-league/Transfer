@@ -5,7 +5,7 @@ package com.ecleague.parser.ast;
  * Date: 2017/3/6<br/>
  * Email: byp5303628@hotmail.com
  */
-public class Operation implements SourceParser{
+public class Operation implements SourceParser {
    private Operation left;
    private Operator operator;
    private Operation right;
@@ -40,7 +40,20 @@ public class Operation implements SourceParser{
     * @param sourceCode
     */
    @Override
-   public void parse(String sourceCode) {
+   public String parse(String sourceCode) {
+      if (sourceCode.indexOf('(') == 0) {
+         left = new Operation();
 
+         String leftOperation =
+               sourceCode.substring(1, sourceCode.indexOf(')'));
+
+         sourceCode = left.parse(leftOperation);
+      }
+
+      operator = new Operator();
+      sourceCode = operator.parse(sourceCode);
+
+      right = new Operation();
+      return right.parse(sourceCode);
    }
 }

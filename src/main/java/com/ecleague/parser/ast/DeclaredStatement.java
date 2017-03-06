@@ -5,7 +5,7 @@ package com.ecleague.parser.ast;
  * Date: 2017/3/5<br/>
  * Email: byp5303628@hotmail.com
  */
-public class DeclaredStatement extends Statement implements SourceParser{
+public class DeclaredStatement extends Statement implements SourceParser {
    private String declaredType;
    private String initValue;
 
@@ -31,7 +31,7 @@ public class DeclaredStatement extends Statement implements SourceParser{
     * @param sourceCode
     */
    @Override
-   public void parse(String sourceCode) {
-
+   public String parse(String sourceCode) {
+      return null;
    }
 }

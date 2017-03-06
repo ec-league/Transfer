@@ -8,7 +8,9 @@ package com.ecleague.parser.ast;
 public interface SourceParser {
    /**
     * Take the source code as the param, parse and generate ast object.
+    * 
     * @param sourceCode
+    * @return left source code.
     */
-   void parse(String sourceCode);
+   String parse(String sourceCode);
 }

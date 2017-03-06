@@ -5,7 +5,7 @@ package com.ecleague.parser.ast;
  * Date: 2017/3/5<br/>
  * Email: byp5303628@hotmail.com
  */
-public class ExecuteStatement extends Statement implements SourceParser{
+public class ExecuteStatement extends Statement implements SourceParser {
    private Expression expression;
 
    public Expression getExpression() {
@@ -22,7 +22,7 @@ public class ExecuteStatement extends Statement implements SourceParser{
     * @param sourceCode
     */
    @Override
-   public void parse(String sourceCode) {
-
+   public String parse(String sourceCode) {
+      return null;
    }
 }
