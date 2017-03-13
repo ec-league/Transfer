@@ -1,11 +1,16 @@
-package com.ecleague.parser.ast;
+package com.ecleague.parser.ast.operation;
+
+import com.ecleague.parser.ast.Operator;
+import com.ecleague.parser.ast.Regex;
+import com.ecleague.parser.ast.csharp.Operators;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Author: EthanPark <br/>
  * Date: 2017/3/6<br/>
  * Email: byp5303628@hotmail.com
  */
-public class Operation implements SourceParser {
+public class OperationImpl implements Operation {
    private Operation left;
    private Operator operator;
    private Operation right;
@@ -41,19 +46,27 @@ public class Operation implements SourceParser {
     */
    @Override
    public String parse(String sourceCode) {
-      if (sourceCode.indexOf('(') == 0) {
-         left = new Operation();
+      if (sourceCode.indexOf(Operators.LEFT_BRACKET) == 0) {
 
-         String leftOperation =
-               sourceCode.substring(1, sourceCode.indexOf(')'));
+         String innerItem = sourceCode.substring(1,
+               sourceCode.indexOf(Operators.RIGHT_BRACKET));
 
-         sourceCode = left.parse(leftOperation);
+         if (innerItem.matches(Regex.TYPE)) {
+            left = new TypeOperationImpl();
+            sourceCode = left.parse(sourceCode);
+         }
+
+         sourceCode = left.parse(innerItem);
+      } else {
+         String temp = StringUtils.trimToEmpty(sourceCode);
+         if (temp.matches(Regex.TYPE)) {
+
+         }
       }
 
       operator = new Operator();
       sourceCode = operator.parse(sourceCode);
-
-      right = new Operation();
+      right = new OperationImpl();
       return right.parse(sourceCode);
    }
 }

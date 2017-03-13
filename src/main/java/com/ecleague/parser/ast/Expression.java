@@ -1,5 +1,7 @@
 package com.ecleague.parser.ast;
 
+import com.ecleague.parser.ast.operation.Operation;
+
 /**
  * Author: EthanPark <br/>
  * Date: 2017/3/6<br/>

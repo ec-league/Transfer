@@ -1,7 +1,9 @@
 package com.ecleague.parser.ast;
 
-import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import org.apache.commons.lang.StringUtils;
+
+import com.ecleague.parser.ast.csharp.Operators;
+import com.ecleague.parser.ast.exception.ParseSyntaxException;
 
 /**
  * Author: EthanPark <br/>
@@ -23,8 +25,7 @@ public class Operator implements SourceParser {
       if (StringUtils.isNotEmpty(sourceCode))
          setOperator(sourceCode);
       else
-         throw new ParseSyntaxException(
-               String.format("Parse operator failed : %s", sourceCode));
+         throw new ParseSyntaxException(this, sourceCode);
 
       return sourceCode.substring(operator.length());
    }
@@ -34,32 +35,30 @@ public class Operator implements SourceParser {
    }
 
    public void setOperator(String operatorStr) {
-      switch (operatorStr.charAt(0)) {
-      case OperatorCategory.PLUS:
-      case OperatorCategory.MINUS:
-      case OperatorCategory.MULTI:
-      case OperatorCategory.DIVIDE:
+      switch (operatorStr.substring(0, 1)) {
+      case Operators.PLUS:
+      case Operators.MINUS:
+      case Operators.MULTIPLY:
+      case Operators.DIVIDE:
+      case Operators.MOD:
          operator = Character.toString(operatorStr.charAt(0));
          break;
-      case OperatorCategory.BIT_AND:
-         if (operatorStr.charAt(1) == OperatorCategory.BIT_AND)
-            setOperator("&&");
-         operator = Character.toString(operatorStr.charAt(0));
+      case Operators.BIT_AND:
+         if (operatorStr.substring(0, 2).equals(Operators.AND))
+            setOperator(Operators.AND);
+         else
+            operator = Character.toString(operatorStr.charAt(0));
          break;
-      case OperatorCategory.BIT_OR:
-         if (operatorStr.charAt(1) == OperatorCategory.BIT_OR)
-            setOperator("||");
-         operator = Character.toString(operatorStr.charAt(0));
+      case Operators.BIT_OR:
+         if (operatorStr.substring(0, 2).equals(Operators.OR))
+            setOperator(Operators.OR);
+         else
+            operator = Character.toString(operatorStr.charAt(0));
+         break;
+      case Operators.ASSIGN:
+         if (operatorStr.substring(0, 2).equals(Operators.EQUAL))
+            setOperator(Operators.EQUAL);
          break;
       }
-   }
-
-   private static class OperatorCategory {
-      private static final char PLUS = '+';
-      private static final char MINUS = '-';
-      private static final char MULTI = '*';
-      private static final char DIVIDE = '/';
-      private static final char BIT_AND = '&';
-      private static final char BIT_OR = '|';
    }
 }
