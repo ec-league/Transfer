@@ -1,9 +1,10 @@
 package com.ecleague.parser.ast.operation;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.Operator;
 import com.ecleague.parser.ast.Regex;
 import com.ecleague.parser.ast.csharp.Operators;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Author: EthanPark <br/>
@@ -58,14 +59,19 @@ public class OperationImpl implements Operation {
 
          sourceCode = left.parse(innerItem);
       } else {
-         String temp = StringUtils.trimToEmpty(sourceCode);
-         if (temp.matches(Regex.TYPE)) {
-
-         }
+         sourceCode = StringUtils.trimToEmpty(sourceCode);
+         left = new TypeOperationImpl();
+         sourceCode = left.parse(sourceCode);
       }
 
       operator = new Operator();
       sourceCode = operator.parse(sourceCode);
+
+      if (operator.isSemicolon()) {
+         right = null;
+         return "";
+      }
+
       right = new OperationImpl();
       return right.parse(sourceCode);
    }

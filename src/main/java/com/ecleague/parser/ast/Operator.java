@@ -24,8 +24,9 @@ public class Operator implements SourceParser {
 
       if (StringUtils.isNotEmpty(sourceCode))
          setOperator(sourceCode);
-      else
+      else {
          throw new ParseSyntaxException(this, sourceCode);
+      }
 
       return sourceCode.substring(operator.length());
    }
@@ -41,6 +42,7 @@ public class Operator implements SourceParser {
       case Operators.MULTIPLY:
       case Operators.DIVIDE:
       case Operators.MOD:
+      case Operators.SEMICOLON:
          operator = Character.toString(operatorStr.charAt(0));
          break;
       case Operators.BIT_AND:
@@ -60,5 +62,9 @@ public class Operator implements SourceParser {
             setOperator(Operators.EQUAL);
          break;
       }
+   }
+
+   public boolean isSemicolon() {
+      return Operators.SEMICOLON.equals(operator);
    }
 }

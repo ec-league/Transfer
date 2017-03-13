@@ -1,12 +1,13 @@
 package com.ecleague.parser.ast.operation;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.Regex;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author EthanPark <br/>
@@ -47,9 +48,12 @@ public class TypeOperationImpl implements Operation {
       }
 
       Pattern pattern = Pattern.compile(Regex.PARAM);
+      Pattern numbericPattern = Pattern.compile(Regex.NUMBERIC);
       Matcher matcher = pattern.matcher(sourceCode);
 
       if (matcher.find()) {
+         setName(matcher.group());
+      } else if ((matcher = numbericPattern.matcher(sourceCode)).find()) {
          setName(matcher.group());
       } else {
          throw new ParseSyntaxException(this, sourceCode);
