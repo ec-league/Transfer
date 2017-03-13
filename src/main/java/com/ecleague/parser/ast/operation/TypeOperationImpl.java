@@ -49,10 +49,14 @@ public class TypeOperationImpl implements Operation {
       Pattern pattern = Pattern.compile(Regex.PARAM);
       Matcher matcher = pattern.matcher(sourceCode);
 
-      setName(matcher.group());
+      if (matcher.find()) {
+         setName(matcher.group());
+      } else {
+         throw new ParseSyntaxException(this, sourceCode);
+      }
 
       return sourceCode
-            .substring(sourceCode.indexOf(getName() + getName().length()));
+            .substring(sourceCode.indexOf(getName()) + getName().length());
    }
 
    public String getType() {

@@ -30,4 +30,16 @@ public class TypeOperationImplTest {
       Assert.assertEquals(typeOperation.getName(), "someparam");
       Assert.assertEquals(typeOperation.getType(), "SomeType");
    }
+
+   @Test
+   public void testParseWithOriginParam() {
+      String sourceCode = "someparam1 + someparam2";
+
+      TypeOperationImpl typeOperation = new TypeOperationImpl();
+
+      sourceCode = typeOperation.parse(sourceCode);
+
+      Assert.assertEquals(sourceCode, " + someparam2");
+      Assert.assertEquals(typeOperation.getName(), "someparam1");
+   }
 }
