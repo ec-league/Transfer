@@ -5,7 +5,7 @@ package com.ecleague.parser.ast;
  * Date: 2017/3/5<br/>
  * Email: byp5303628@hotmail.com
  */
-public class ArgType implements SourceParser {
+public class ParamType implements SourceParser {
    private String paramType;
    private String paramName;
 

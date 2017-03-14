@@ -1,19 +1,18 @@
-package com.ecleague.parser.ast.operation;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.commons.lang.StringUtils;
+package com.ecleague.parser.ast.expression;
 
 import com.ecleague.parser.ast.Regex;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author EthanPark <br/>
  * @version 1.0
  */
-public class TypeOperationImpl implements Operation {
+public class TypeExpressionImpl implements Expression {
 
    private String type;
    private String name;
@@ -77,5 +76,10 @@ public class TypeOperationImpl implements Operation {
 
    public void setName(String name) {
       this.name = name;
+   }
+
+   @Override
+   public ExpressionType getExpressionType() {
+      return ExpressionType.OBJECT;
    }
 }

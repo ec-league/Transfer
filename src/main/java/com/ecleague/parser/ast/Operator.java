@@ -58,7 +58,8 @@ public class Operator implements SourceParser {
             operator = Character.toString(operatorStr.charAt(0));
          break;
       case Operators.ASSIGN:
-         if (operatorStr.substring(0, 2).equals(Operators.EQUAL))
+         if (operatorStr.length() > 1
+               && operatorStr.substring(0, 2).equals(Operators.EQUAL))
             setOperator(Operators.EQUAL);
          break;
       }

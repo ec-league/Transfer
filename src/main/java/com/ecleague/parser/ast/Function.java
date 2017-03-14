@@ -1,5 +1,7 @@
 package com.ecleague.parser.ast;
 
+import com.ecleague.parser.ast.statement.Statement;
+
 import java.util.List;
 
 /**
@@ -10,11 +12,11 @@ import java.util.List;
 public class Function implements SourceParser {
    private String returnType;
    private boolean staticFunction;
-   private List<ArgType> argTypes;
+   private List<ParamType> paramTypes;
 
    //region Function body
    private List<Statement> statements;
-   private List<ArgType> functionParams;
+   private List<ParamType> functionParams;
 
    private ReturnStatement returnStatement;
    //endregion
@@ -35,12 +37,12 @@ public class Function implements SourceParser {
       this.staticFunction = staticFunction;
    }
 
-   public List<ArgType> getArgTypes() {
-      return argTypes;
+   public List<ParamType> getParamTypes() {
+      return paramTypes;
    }
 
-   public void setArgTypes(List<ArgType> argTypes) {
-      this.argTypes = argTypes;
+   public void setParamTypes(List<ParamType> paramTypes) {
+      this.paramTypes = paramTypes;
    }
 
    public List<Statement> getStatements() {
@@ -51,11 +53,11 @@ public class Function implements SourceParser {
       this.statements = statements;
    }
 
-   public List<ArgType> getFunctionParams() {
+   public List<ParamType> getFunctionParams() {
       return functionParams;
    }
 
-   public void setFunctionParams(List<ArgType> functionParams) {
+   public void setFunctionParams(List<ParamType> functionParams) {
       this.functionParams = functionParams;
    }
 

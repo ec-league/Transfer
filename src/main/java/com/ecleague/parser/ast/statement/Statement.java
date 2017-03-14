@@ -1,4 +1,4 @@
-package com.ecleague.parser.ast.operation;
+package com.ecleague.parser.ast.statement;
 
 import com.ecleague.parser.ast.SourceParser;
 
@@ -6,6 +6,5 @@ import com.ecleague.parser.ast.SourceParser;
  * @author EthanPark <br/>
  * @version 1.0
  */
-public interface Operation extends SourceParser {
-
+public interface Statement extends SourceParser {
 }

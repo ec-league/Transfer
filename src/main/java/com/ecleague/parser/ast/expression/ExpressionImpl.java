@@ -1,4 +1,4 @@
-package com.ecleague.parser.ast.operation;
+package com.ecleague.parser.ast.expression;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -11,16 +11,16 @@ import com.ecleague.parser.ast.csharp.Operators;
  * Date: 2017/3/6<br/>
  * Email: byp5303628@hotmail.com
  */
-public class OperationImpl implements Operation {
-   private Operation left;
+public class ExpressionImpl implements Expression {
+   private Expression left;
    private Operator operator;
-   private Operation right;
+   private Expression right;
 
-   public Operation getLeft() {
+   public Expression getLeft() {
       return left;
    }
 
-   public void setLeft(Operation left) {
+   public void setLeft(Expression left) {
       this.left = left;
    }
 
@@ -32,11 +32,11 @@ public class OperationImpl implements Operation {
       this.operator = operator;
    }
 
-   public Operation getRight() {
+   public Expression getRight() {
       return right;
    }
 
-   public void setRight(Operation right) {
+   public void setRight(Expression right) {
       this.right = right;
    }
 
@@ -53,14 +53,14 @@ public class OperationImpl implements Operation {
                sourceCode.indexOf(Operators.RIGHT_BRACKET));
 
          if (innerItem.matches(Regex.TYPE)) {
-            left = new TypeOperationImpl();
+            left = new TypeExpressionImpl();
             sourceCode = left.parse(sourceCode);
          }
 
          sourceCode = left.parse(innerItem);
       } else {
          sourceCode = StringUtils.trimToEmpty(sourceCode);
-         left = new TypeOperationImpl();
+         left = new TypeExpressionImpl();
          sourceCode = left.parse(sourceCode);
       }
 
@@ -72,7 +72,12 @@ public class OperationImpl implements Operation {
          return "";
       }
 
-      right = new OperationImpl();
+      right = new ExpressionImpl();
       return right.parse(sourceCode);
+   }
+
+   @Override
+   public ExpressionType getExpressionType() {
+      return getLeft().getExpressionType();
    }
 }
