@@ -13,11 +13,16 @@ import java.util.regex.Pattern;
  * @version 1.0
  */
 public class ExpressionFactory {
+
+   private static final String NEW_EXPRESSION = "^new [A-Za-z][A-Za-z0-9]*";
+   private static final String CAST_EXPRESSION = "^\\( *[A-Za-z][A-Za-z0-9]* *\\) *[A-Za-z][A-Za-z0-9]*";
+
    public static Expression getExpression(String sourceCode) {
       sourceCode = StringUtils.trimToEmpty(sourceCode);
-      if ((Pattern.compile(KeyWord.NEW + " " + Regex.PARAM).matcher(sourceCode))
-            .find()) {
+      if ((Pattern.compile(NEW_EXPRESSION).matcher(sourceCode)).find()) {
          return new NewExpressionImpl();
+      } else if (Pattern.compile(CAST_EXPRESSION).matcher(sourceCode).find()) {
+         return new CastExpressionImpl();
       } else if ((Pattern.compile(Regex.NUMBERS).matcher(sourceCode)).find()) {
          return new NumberExpressionImpl();
       } else if (sourceCode.startsWith("(")) {

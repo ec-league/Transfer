@@ -44,12 +44,12 @@ public class ExpressionImplTest {
 
       expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
+      Assert.assertEquals(((NumberExpressionImpl) expression.getLeft()).getName(),
             "7");
 
       expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
+      Assert.assertEquals(((NumberExpressionImpl) expression.getLeft()).getName(),
             "4");
    }
 }

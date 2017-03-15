@@ -46,15 +46,17 @@ public class ExpressionImpl implements Expression {
     */
    @Override
    public String parse(String sourceCode) {
-      sourceCode = StringUtils.trimToEmpty(sourceCode);
-      if (sourceCode.indexOf(Operators.LEFT_BRACKET) == 0) {
-         String innerItem = Util.trimTarget(sourceCode, Operators.LEFT_BRACKET);
-         left = ExpressionFactory.getExpression(innerItem);
-         innerItem = left.parse(innerItem);
-         sourceCode = Util.trimTarget(innerItem, Operators.RIGHT_BRACKET);
+
+      String temp = StringUtils.trimToEmpty(sourceCode);
+
+      if (temp.startsWith(Operators.LEFT_BRACKET)){
+         temp = Util.trimTarget(temp, Operators.LEFT_BRACKET);
+         left = new ExpressionImpl();
+         temp = left.parse(temp);
+         sourceCode = Util.trimTarget(temp, Operators.RIGHT_BRACKET);
       } else {
-         left = ExpressionFactory.getExpression(sourceCode);
-         sourceCode = left.parse(sourceCode);
+         left = ExpressionFactory.getExpression(temp);
+         sourceCode = left.parse(temp);
       }
 
       operator = new Operator();

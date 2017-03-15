@@ -1,8 +1,7 @@
 package com.ecleague.parser.ast.expression;
 
 import com.ecleague.parser.ast.util.Regex;
-import com.ecleague.parser.ast.csharp.Operators;
-import com.ecleague.parser.ast.exception.ParseSyntaxException;
+import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.regex.Matcher;
@@ -19,47 +18,14 @@ public class TypeExpressionImpl implements Expression {
 
    @Override
    public String parse(String sourceCode) {
-      sourceCode = StringUtils.trimToEmpty(sourceCode);
+      String temp = StringUtils.trimToEmpty(sourceCode);
 
-      if (StringUtils.isEmpty(sourceCode))
-         throw new ParseSyntaxException(this, sourceCode);
-
-      if (sourceCode.startsWith(Operators.LEFT_BRACKET)) {
-         setType(sourceCode.substring(
-               sourceCode.indexOf(Operators.LEFT_BRACKET) + 1,
-               sourceCode.indexOf(Operators.RIGHT_BRACKET)));
-
-         sourceCode = sourceCode
-               .substring(sourceCode.indexOf(Operators.RIGHT_BRACKET) + 1);
-
-         sourceCode = StringUtils.trimToEmpty(sourceCode);
-
-         Pattern pattern = Pattern.compile(Regex.PARAM + "+");
-         Matcher matcher = pattern.matcher(sourceCode);
-         if (matcher.find()) {
-            setName(matcher.group());
-         } else {
-            throw new ParseSyntaxException(this, sourceCode);
-         }
-
-         return sourceCode
-               .substring(sourceCode.indexOf(getName()) + getName().length());
+      Matcher matcher;
+      if ((matcher = Pattern.compile(Regex.PARAM).matcher(sourceCode)).find()){
+         setName(matcher.group());
       }
 
-      Pattern pattern = Pattern.compile(Regex.PARAM);
-      Pattern numbericPattern = Pattern.compile(Regex.NUMBERS);
-      Matcher matcher = pattern.matcher(sourceCode);
-
-      if (matcher.find()) {
-         setName(matcher.group());
-      } else if ((matcher = numbericPattern.matcher(sourceCode)).find()) {
-         setName(matcher.group());
-      } else {
-         throw new ParseSyntaxException(this, sourceCode);
-      }
-
-      return sourceCode
-            .substring(sourceCode.indexOf(getName()) + getName().length());
+      return Util.trimTarget(temp, getName());
    }
 
    public String getType() {

@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
  */
 public class NewExpressionImpl implements Expression {
    private Function function;
+   private ExecuteExpressionImpl executeExpression;
 
    @Override
    public ExpressionType getExpressionType() {
@@ -25,9 +26,18 @@ public class NewExpressionImpl implements Expression {
 
       String temp = StringUtils.trimToEmpty(sourceCode.substring(3));
 
-      if ((Pattern.compile(Regex.PARAM + "+").matcher(temp)).find()) {
+      if ((Pattern.compile(Regex.PARAM).matcher(temp)).find()) {
          function = new ConstructorFunction();
-         return function.parse(temp);
+         temp = function.parse(temp);
+
+         temp = StringUtils.trimToEmpty(temp);
+
+         if (temp.startsWith(".")) {
+            executeExpression = new ExecuteExpressionImpl();
+            return executeExpression.parse(temp);
+         }
+
+         return temp;
       } else {
          throw new ParseSyntaxException(this, sourceCode);
       }
