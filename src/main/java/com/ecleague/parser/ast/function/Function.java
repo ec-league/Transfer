@@ -1,5 +1,8 @@
-package com.ecleague.parser.ast;
+package com.ecleague.parser.ast.function;
 
+import com.ecleague.parser.ast.ParamType;
+import com.ecleague.parser.ast.ReturnStatement;
+import com.ecleague.parser.ast.SourceParser;
 import com.ecleague.parser.ast.statement.Statement;
 
 import java.util.List;

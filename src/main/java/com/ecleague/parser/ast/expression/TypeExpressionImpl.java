@@ -1,6 +1,6 @@
 package com.ecleague.parser.ast.expression;
 
-import com.ecleague.parser.ast.Regex;
+import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import org.apache.commons.lang.StringUtils;
@@ -47,7 +47,7 @@ public class TypeExpressionImpl implements Expression {
       }
 
       Pattern pattern = Pattern.compile(Regex.PARAM);
-      Pattern numbericPattern = Pattern.compile(Regex.NUMBERIC);
+      Pattern numbericPattern = Pattern.compile(Regex.NUMBERS);
       Matcher matcher = pattern.matcher(sourceCode);
 
       if (matcher.find()) {

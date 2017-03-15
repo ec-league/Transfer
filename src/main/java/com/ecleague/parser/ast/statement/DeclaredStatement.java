@@ -2,13 +2,14 @@ package com.ecleague.parser.ast.statement;
 
 import com.ecleague.parser.ast.Operator;
 import com.ecleague.parser.ast.ParamType;
-import com.ecleague.parser.ast.Regex;
 import com.ecleague.parser.ast.SourceParser;
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.expression.Expression;
 import com.ecleague.parser.ast.expression.ExpressionImpl;
+import com.ecleague.parser.ast.util.Regex;
+import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.regex.Matcher;
@@ -66,22 +67,14 @@ public class DeclaredStatement implements Statement, SourceParser {
       } else if ((matcher =
             Pattern.compile(Regex.TYPE + " " + Regex.PARAM + "+").matcher(temp))
                   .find()) {
-
          matcher = Pattern.compile(Regex.TYPE).matcher(temp);
-
          paramType = new ParamType();
          if (matcher.find()) {
             paramType.setParamType(matcher.group());
          }
-         if (matcher.find()){
-            paramType.setParamName(matcher.group());
-         }
 
-         temp = temp.substring(temp.indexOf(paramType.getParamName())
-               + paramType.getParamName().length());
-
-         temp = StringUtils.trimToEmpty(temp);
-
+         temp = Util.trimTarget(temp, paramType.getParamType());
+         temp = processVariable(temp);
          return processAssign(temp);
       } else {
          temp = processVariable(temp);
@@ -94,7 +87,8 @@ public class DeclaredStatement implements Statement, SourceParser {
       Matcher matcher;
       if ((matcher = Pattern.compile(Regex.PARAM + "+").matcher(sourceCode))
             .find()) {
-         paramType = new ParamType();
+         if (paramType == null)
+            paramType = new ParamType();
          paramType.setParamName(matcher.group());
 
          sourceCode =

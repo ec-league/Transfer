@@ -17,41 +17,39 @@ public class ExpressionImplTest {
     */
    @Test
    public void testParse() throws Exception {
-      ExpressionImpl operation = new ExpressionImpl();
+      ExpressionImpl expression = new ExpressionImpl();
 
       String sourceCode = "5 + 6;";
 
-      Assert.assertEquals(operation.parse(sourceCode), "");
+      Assert.assertEquals(expression.parse(sourceCode), "");
 
-      Assert.assertEquals(((TypeExpressionImpl) operation.getLeft()).getName(),
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
             "5");
-      operation = (ExpressionImpl) operation.getRight();
+      expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((TypeExpressionImpl) operation.getLeft()).getName(),
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
             "6");
 
       sourceCode = "a + b + 7 - 4;";
 
-      Assert.assertEquals(operation.parse(sourceCode), "");
+      Assert.assertEquals(expression.parse(sourceCode), "");
 
-      Assert.assertEquals(((TypeExpressionImpl) operation.getLeft()).getName(),
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
             "a");
 
-      operation = (ExpressionImpl) operation.getRight();
+      expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((TypeExpressionImpl) operation.getLeft()).getName(),
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
             "b");
 
-      operation = (ExpressionImpl) operation.getRight();
+      expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((TypeExpressionImpl) operation.getLeft()).getName(),
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
             "7");
 
-      operation = (ExpressionImpl) operation.getRight();
+      expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((TypeExpressionImpl) operation.getLeft()).getName(),
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
             "4");
    }
-
-
 }

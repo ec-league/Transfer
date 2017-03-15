@@ -1,5 +1,7 @@
 package com.ecleague.parser.ast;
 
+import com.ecleague.parser.ast.function.Function;
+
 import java.util.List;
 
 /**

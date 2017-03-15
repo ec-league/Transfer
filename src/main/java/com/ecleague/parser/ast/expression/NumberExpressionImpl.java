@@ -5,5 +5,5 @@ package com.ecleague.parser.ast.expression;
  * Date: 2017/3/13<br/>
  * Email: byp5303628@hotmail.com
  */
-public class NumbericExpressionImpl extends TypeExpressionImpl {
+public class NumberExpressionImpl extends TypeExpressionImpl {
 }

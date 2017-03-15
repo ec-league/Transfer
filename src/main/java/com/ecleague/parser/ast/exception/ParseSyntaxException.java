@@ -11,4 +11,8 @@ public class ParseSyntaxException extends RuntimeException {
       super(String.format("Parse %s Failed : %s", parser.getClass(),
             sourceCode));
    }
+
+   public ParseSyntaxException(Class<?> clazz, String sourceCode) {
+      super(String.format("Parse %s Failed : %s", clazz, sourceCode));
+   }
 }

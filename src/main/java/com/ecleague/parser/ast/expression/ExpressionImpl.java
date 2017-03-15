@@ -1,10 +1,9 @@
 package com.ecleague.parser.ast.expression;
 
-import org.apache.commons.lang.StringUtils;
-
 import com.ecleague.parser.ast.Operator;
-import com.ecleague.parser.ast.Regex;
 import com.ecleague.parser.ast.csharp.Operators;
+import com.ecleague.parser.ast.util.Util;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Author: EthanPark <br/>
@@ -47,24 +46,19 @@ public class ExpressionImpl implements Expression {
     */
    @Override
    public String parse(String sourceCode) {
+      sourceCode = StringUtils.trimToEmpty(sourceCode);
       if (sourceCode.indexOf(Operators.LEFT_BRACKET) == 0) {
-
-         String innerItem = sourceCode.substring(1,
-               sourceCode.indexOf(Operators.RIGHT_BRACKET));
-
-         if (innerItem.matches(Regex.TYPE)) {
-            left = new TypeExpressionImpl();
-            sourceCode = left.parse(sourceCode);
-         }
-
-         sourceCode = left.parse(innerItem);
+         String innerItem = Util.trimTarget(sourceCode, Operators.LEFT_BRACKET);
+         left = ExpressionFactory.getExpression(innerItem);
+         innerItem = left.parse(innerItem);
+         sourceCode = Util.trimTarget(innerItem, Operators.RIGHT_BRACKET);
       } else {
-         sourceCode = StringUtils.trimToEmpty(sourceCode);
-         left = new TypeExpressionImpl();
+         left = ExpressionFactory.getExpression(sourceCode);
          sourceCode = left.parse(sourceCode);
       }
 
       operator = new Operator();
+
       sourceCode = operator.parse(sourceCode);
 
       if (operator.isSemicolon()) {
