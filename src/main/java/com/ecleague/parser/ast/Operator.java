@@ -1,11 +1,12 @@
 package com.ecleague.parser.ast;
 
-import com.ecleague.parser.ast.csharp.Operators;
-import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.ecleague.parser.ast.csharp.Operators;
+import com.ecleague.parser.ast.util.Util;
 
 /**
  * Author: EthanPark <br/>
@@ -64,21 +65,23 @@ public class Operator implements SourceParser {
          break;
       case Operators.BIT_AND:
          if (operatorStr.substring(0, 2).equals(Operators.AND))
-            setOperator(Operators.AND);
+            operator = Operators.AND;
          else
             operator = Character.toString(operatorStr.charAt(0));
          break;
       case Operators.BIT_OR:
          if (operatorStr.substring(0, 2).equals(Operators.OR))
-            setOperator(Operators.OR);
+            operator = Operators.OR;
          else
             operator = Character.toString(operatorStr.charAt(0));
          break;
       case Operators.ASSIGN:
          if (operatorStr.length() > 1
                && operatorStr.substring(0, 2).equals(Operators.EQUAL))
-            setOperator(Operators.EQUAL);
+            operator = Operators.EQUAL;
          break;
+      case Operators.RIGHT_BRACKET:
+         operator = "";
       }
    }
 

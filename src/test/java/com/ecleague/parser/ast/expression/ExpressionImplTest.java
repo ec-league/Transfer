@@ -23,33 +23,52 @@ public class ExpressionImplTest {
 
       Assert.assertEquals(expression.parse(sourceCode), "");
 
-      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
-            "5");
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft())
+            .getParamType().getParamName(), "5");
       expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
-            "6");
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft())
+            .getParamType().getParamName(), "6");
 
       sourceCode = "a + b + 7 - 4;";
 
       Assert.assertEquals(expression.parse(sourceCode), "");
 
-      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
-            "a");
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft())
+            .getParamType().getParamName(), "a");
 
       expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft()).getName(),
-            "b");
+      Assert.assertEquals(((TypeExpressionImpl) expression.getLeft())
+            .getParamType().getParamName(), "b");
 
       expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((NumberExpressionImpl) expression.getLeft()).getName(),
-            "7");
+      Assert.assertEquals(((NumberExpressionImpl) expression.getLeft())
+            .getParamType().getParamName(), "7");
 
       expression = (ExpressionImpl) expression.getRight();
 
-      Assert.assertEquals(((NumberExpressionImpl) expression.getLeft()).getName(),
-            "4");
+      Assert.assertEquals(((NumberExpressionImpl) expression.getLeft())
+            .getParamType().getParamName(), "4");
+   }
+
+   @Test
+   public void testParseComplex1() {
+      String sourceCode =
+            "!product.MatchSeatGrade(entity.DepartMainSegment.SeatGrade)";
+
+      Expression expression = new ExpressionImpl();
+
+      Assert.assertEquals(expression.parse(sourceCode), "");
+   }
+
+   @Test
+   public void testParseComplex2(){
+      String sourceCode = "AgentCache.IsOwnAgency(agentId);";
+
+      Expression expression = new ExpressionImpl();
+
+      Assert.assertEquals(expression.parse(sourceCode), "");
    }
 }

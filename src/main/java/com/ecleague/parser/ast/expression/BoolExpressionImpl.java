@@ -1,9 +1,10 @@
 package com.ecleague.parser.ast.expression;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Author: EthanPark <br/>
@@ -16,7 +17,7 @@ public class BoolExpressionImpl extends TypeExpressionImpl
    private boolean not;
 
    public BoolExpressionImpl() {
-      setType("boolean");
+      getParamType().setParamType("boolean");
    }
 
    @Override
@@ -24,11 +25,11 @@ public class BoolExpressionImpl extends TypeExpressionImpl
       String temp = StringUtils.trimToEmpty(sourceCode);
 
       if (temp.startsWith(KeyWord.TRUE)) {
-         setName("true");
-         return Util.trimTarget(temp, getName());
+         getParamType().setParamName("true");
+         return Util.trimTarget(temp, getParamType().getParamName());
       } else if (temp.startsWith(KeyWord.FALSE)) {
-         setName("false");
-         return Util.trimTarget(temp, getName());
+         getParamType().setParamName("false");
+         return Util.trimTarget(temp, getParamType().getParamName());
       } else if (temp.startsWith(Operators.NOT)) {
          not = true;
          temp = Util.trimTarget(temp, Operators.NOT);

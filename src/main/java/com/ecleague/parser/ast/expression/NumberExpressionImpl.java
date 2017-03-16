@@ -1,11 +1,12 @@
 package com.ecleague.parser.ast.expression;
 
-import com.ecleague.parser.ast.util.Regex;
-import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.ecleague.parser.ast.util.Regex;
+import com.ecleague.parser.ast.util.Util;
 
 /**
  * Author: EthanPark <br/>
@@ -19,10 +20,11 @@ public class NumberExpressionImpl extends TypeExpressionImpl {
       String temp = StringUtils.trimToEmpty(sourceCode);
 
       Matcher matcher;
-      if ((matcher = Pattern.compile(Regex.NUMBERS).matcher(sourceCode)).find()){
-         setName(matcher.group());
+      if ((matcher = Pattern.compile(Regex.NUMBERS).matcher(sourceCode))
+            .find()) {
+         getParamType().setParamName(matcher.group());
       }
 
-      return Util.trimTarget(temp, getName());
+      return Util.trimTarget(temp, getParamType().getParamName());
    }
 }

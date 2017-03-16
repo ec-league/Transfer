@@ -36,24 +36,24 @@ public class BoolExpressionImplTest {
 
       Assert.assertEquals(expression.parse(sourceCode), ";");
 
-      Assert.assertEquals(expression.getType(), "boolean");
+      Assert.assertEquals(expression.getParamType().getParamType(), "boolean");
 
-      Assert.assertEquals(expression.getName(), "true");
+      Assert.assertEquals(expression.getParamType().getParamName(), "true");
 
       sourceCode = "false && true;";
 
       Assert.assertEquals(expression.parse(sourceCode), "&& true;");
 
-      Assert.assertEquals(expression.getType(), "boolean");
+      Assert.assertEquals(expression.getParamType().getParamType(), "boolean");
 
-      Assert.assertEquals(expression.getName(), "false");
+      Assert.assertEquals(expression.getParamType().getParamName(), "false");
 
       sourceCode = "!abc";
 
       Assert.assertEquals(expression.parse(sourceCode), "");
 
-      Assert.assertEquals(expression.getType(), "boolean");
+      Assert.assertEquals(expression.getParamType().getParamType(), "boolean");
 
-      Assert.assertEquals(expression.getName(), "abc");
+      Assert.assertEquals(expression.getParamType().getParamName(), "abc");
    }
 }

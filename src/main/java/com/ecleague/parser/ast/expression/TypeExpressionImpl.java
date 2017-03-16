@@ -1,11 +1,13 @@
 package com.ecleague.parser.ast.expression;
 
-import com.ecleague.parser.ast.util.Regex;
-import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.ecleague.parser.ast.ParamType;
+import com.ecleague.parser.ast.util.Regex;
+import com.ecleague.parser.ast.util.Util;
 
 /**
  * @author EthanPark <br/>
@@ -14,8 +16,9 @@ import java.util.regex.Pattern;
 public class TypeExpressionImpl extends AbstractExpression
       implements Expression {
 
-   private String type;
-   private String name;
+   private ParamType paramType = new ParamType();
+
+   private ExecuteExpressionImpl next;
 
    @Override
    public String parse(String sourceCode) {
@@ -23,30 +26,43 @@ public class TypeExpressionImpl extends AbstractExpression
 
       Matcher matcher;
       if ((matcher = Pattern.compile(Regex.PARAM).matcher(sourceCode)).find()) {
-         setName(matcher.group());
+         paramType.setParamName(matcher.group());
+         temp = Util.trimTarget(temp, paramType.getParamName());
       }
 
-      return Util.trimTarget(temp, getName());
+      return parseNext(temp);
    }
 
-   public String getType() {
-      return type;
-   }
+   protected String parseNext(String sourceCode) {
+      String temp = StringUtils.trimToEmpty(sourceCode);
 
-   public void setType(String type) {
-      this.type = StringUtils.trimToEmpty(type);
-   }
+      if (temp.startsWith(".")) {
+         temp = Util.trimTarget(temp, ".");
+         next = new ExecuteExpressionImpl();
+         return next.parse(temp);
+      }
 
-   public String getName() {
-      return name;
-   }
-
-   public void setName(String name) {
-      this.name = name;
+      return temp;
    }
 
    @Override
    public ExpressionType getExpressionType() {
       return ExpressionType.OBJECT;
+   }
+
+   public ParamType getParamType() {
+      return paramType;
+   }
+
+   public void setParamType(ParamType paramType) {
+      this.paramType = paramType;
+   }
+
+   public ExecuteExpressionImpl getNext() {
+      return next;
+   }
+
+   public void setNext(ExecuteExpressionImpl next) {
+      this.next = next;
    }
 }

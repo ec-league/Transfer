@@ -107,9 +107,7 @@ public class ExecuteExpressionImpl extends AbstractExpression
          temp = Util.trimTarget(temp, KeyWord.REF);
       }
 
-      Matcher matcher;
-
-      if ((matcher = Pattern.compile(Regex.VARIABLE).matcher(temp)).find()) {
+      if (Pattern.compile(Regex.VARIABLE).matcher(temp).find()) {
          temp = e.parse(temp);
          function.addExpression(e);
          temp = StringUtils.trimToEmpty(temp);

@@ -20,6 +20,6 @@ public class TypeExpressionImplTest {
       sourceCode = typeOperation.parse(sourceCode);
 
       Assert.assertEquals(sourceCode, "+ someparam2");
-      Assert.assertEquals(typeOperation.getName(), "someparam1");
+      Assert.assertEquals(typeOperation.getParamType().getParamName(), "someparam1");
    }
 }
