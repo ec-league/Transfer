@@ -15,7 +15,8 @@ import java.util.regex.Pattern;
 public class ExpressionFactory {
 
    private static final String NEW_EXPRESSION = "^new [A-Za-z][A-Za-z0-9]*";
-   private static final String CAST_EXPRESSION = "^\\( *[A-Za-z][A-Za-z0-9]* *\\) *[A-Za-z][A-Za-z0-9]*";
+   private static final String CAST_EXPRESSION =
+         "^\\( *[A-Za-z][A-Za-z0-9]* *\\) *[A-Za-z][A-Za-z0-9]*";
 
    public static Expression getExpression(String sourceCode) {
       sourceCode = StringUtils.trimToEmpty(sourceCode);
@@ -31,11 +32,14 @@ public class ExpressionFactory {
             || sourceCode.startsWith(KeyWord.FALSE)
             || sourceCode.startsWith(Operators.NOT)) {
          return new BoolExpressionImpl();
-      } else if (Pattern.compile(Regex.FUNCTION_CALL).matcher(sourceCode)
-            .find()) {
+      } else if (Pattern.compile(Regex.FUNCTION_CALL).matcher(sourceCode).find()
+            || Pattern.compile(Regex.PROPERTY_CALL).matcher(sourceCode)
+                  .find()) {
          return new ExecuteExpressionImpl();
       } else if (Pattern.compile(Regex.PARAM).matcher(sourceCode).find()) {
          return new TypeExpressionImpl();
+      } else if (StringUtils.isEmpty(sourceCode)) {
+         return new EmptyExpression();
       }
 
       throw new ParseSyntaxException(Expression.class, sourceCode);

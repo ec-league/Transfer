@@ -1,9 +1,11 @@
 package com.ecleague.parser.ast;
 
+import com.ecleague.parser.ast.csharp.Operators;
+import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
-import com.ecleague.parser.ast.csharp.Operators;
-import com.ecleague.parser.ast.exception.ParseSyntaxException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Author: EthanPark <br/>
@@ -12,6 +14,21 @@ import com.ecleague.parser.ast.exception.ParseSyntaxException;
  */
 public class Operator implements SourceParser {
    private String operator;
+
+   private static final Set<String> CALCULATE_OPERATORS = new HashSet<>();
+
+   static {
+      CALCULATE_OPERATORS.add(Operators.PLUS);
+      CALCULATE_OPERATORS.add(Operators.MINUS);
+      CALCULATE_OPERATORS.add(Operators.MULTIPLY);
+      CALCULATE_OPERATORS.add(Operators.DIVIDE);
+      CALCULATE_OPERATORS.add(Operators.MOD);
+      CALCULATE_OPERATORS.add(Operators.AND);
+      CALCULATE_OPERATORS.add(Operators.OR);
+      CALCULATE_OPERATORS.add(Operators.EQUAL);
+      CALCULATE_OPERATORS.add(Operators.BIT_AND);
+      CALCULATE_OPERATORS.add(Operators.BIT_OR);
+   }
 
    /**
     * Take the source code as the param, parse and generate ast object.
@@ -25,10 +42,10 @@ public class Operator implements SourceParser {
       if (StringUtils.isNotEmpty(sourceCode))
          setOperator(sourceCode);
       else {
-         throw new ParseSyntaxException(this, sourceCode);
+         return "";
       }
 
-      return sourceCode.substring(operator.length());
+      return Util.trimTarget(sourceCode, getOperator());
    }
 
    public String getOperator() {
@@ -65,7 +82,7 @@ public class Operator implements SourceParser {
       }
    }
 
-   public boolean isSemicolon() {
-      return Operators.SEMICOLON.equals(operator);
+   public boolean isCalculateOperator() {
+      return CALCULATE_OPERATORS.contains(operator);
    }
 }

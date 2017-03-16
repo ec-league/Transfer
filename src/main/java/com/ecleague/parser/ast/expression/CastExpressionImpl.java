@@ -1,27 +1,26 @@
 package com.ecleague.parser.ast.expression;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.commons.lang.NotImplementedException;
-import org.apache.commons.lang.StringUtils;
-
 import com.ecleague.parser.ast.ParamType;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.function.Function;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
+import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author EthanPark <br/>
  * @version 1.0
  */
-public class CastExpressionImpl implements Expression {
+public class CastExpressionImpl extends AbstractExpression
+      implements Expression {
    private ParamType paramType;
 
    private Function function;
-
 
    @Override
    public ExpressionType getExpressionType() {

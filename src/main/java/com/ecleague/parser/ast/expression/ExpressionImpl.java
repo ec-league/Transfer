@@ -10,7 +10,7 @@ import org.apache.commons.lang.StringUtils;
  * Date: 2017/3/6<br/>
  * Email: byp5303628@hotmail.com
  */
-public class ExpressionImpl implements Expression {
+public class ExpressionImpl extends AbstractExpression implements Expression {
    private Expression left;
    private Operator operator;
    private Expression right;
@@ -49,23 +49,23 @@ public class ExpressionImpl implements Expression {
 
       String temp = StringUtils.trimToEmpty(sourceCode);
 
-      if (temp.startsWith(Operators.LEFT_BRACKET)){
+      if (temp.startsWith(Operators.LEFT_BRACKET)) {
          temp = Util.trimTarget(temp, Operators.LEFT_BRACKET);
          left = new ExpressionImpl();
          temp = left.parse(temp);
          sourceCode = Util.trimTarget(temp, Operators.RIGHT_BRACKET);
       } else {
          left = ExpressionFactory.getExpression(temp);
-         sourceCode = left.parse(temp);
+         temp = left.parse(temp);
       }
 
       operator = new Operator();
 
-      sourceCode = operator.parse(sourceCode);
+      sourceCode = operator.parse(temp);
 
-      if (operator.isSemicolon()) {
+      if (!operator.isCalculateOperator()) {
          right = null;
-         return "";
+         return sourceCode;
       }
 
       right = new ExpressionImpl();

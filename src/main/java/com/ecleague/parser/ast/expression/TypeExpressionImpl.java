@@ -11,7 +11,8 @@ import java.util.regex.Pattern;
  * @author EthanPark <br/>
  * @version 1.0
  */
-public class TypeExpressionImpl implements Expression {
+public class TypeExpressionImpl extends AbstractExpression
+      implements Expression {
 
    private String type;
    private String name;
@@ -21,7 +22,7 @@ public class TypeExpressionImpl implements Expression {
       String temp = StringUtils.trimToEmpty(sourceCode);
 
       Matcher matcher;
-      if ((matcher = Pattern.compile(Regex.PARAM).matcher(sourceCode)).find()){
+      if ((matcher = Pattern.compile(Regex.PARAM).matcher(sourceCode)).find()) {
          setName(matcher.group());
       }
 

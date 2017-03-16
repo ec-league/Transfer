@@ -12,7 +12,8 @@ import java.util.regex.Pattern;
  * @author EthanPark <br/>
  * @version 1.0
  */
-public class NewExpressionImpl implements Expression {
+public class NewExpressionImpl extends AbstractExpression
+      implements Expression {
    private Function function;
    private ExecuteExpressionImpl executeExpression;
 

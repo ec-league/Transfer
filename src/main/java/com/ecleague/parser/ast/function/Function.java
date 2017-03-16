@@ -3,8 +3,10 @@ package com.ecleague.parser.ast.function;
 import com.ecleague.parser.ast.ParamType;
 import com.ecleague.parser.ast.ReturnStatement;
 import com.ecleague.parser.ast.SourceParser;
+import com.ecleague.parser.ast.expression.Expression;
 import com.ecleague.parser.ast.statement.Statement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +18,8 @@ public class Function implements SourceParser {
    private String returnType;
    private boolean staticFunction;
    private List<ParamType> paramTypes;
+   private List<Expression> expressions;
+   private String functionName;
 
    //region Function body
    private List<Statement> statements;
@@ -80,5 +84,28 @@ public class Function implements SourceParser {
    @Override
    public String parse(String sourceCode) {
       return null;
+   }
+
+   public String getFunctionName() {
+      return functionName;
+   }
+
+   public void setFunctionName(String functionName) {
+      this.functionName = functionName;
+   }
+
+   public void addExpression(Expression expression) {
+      if (expressions == null)
+         expressions = new ArrayList<>();
+
+      expressions.add(expression);
+   }
+
+   public List<Expression> getExpressions() {
+      return expressions;
+   }
+
+   public void setExpressions(List<Expression> expressions) {
+      this.expressions = expressions;
    }
 }

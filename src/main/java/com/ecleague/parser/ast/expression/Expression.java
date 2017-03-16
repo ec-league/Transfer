@@ -13,4 +13,12 @@ public interface Expression extends SourceParser {
     * @return
     */
    ExpressionType getExpressionType();
+
+   String getRef();
+
+   void setRef();
+
+   String getOut();
+
+   void setOut();
 }

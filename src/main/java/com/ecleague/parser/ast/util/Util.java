@@ -15,6 +15,10 @@ public class Util {
     * @return
     */
    public static String trimTarget(String string, String target) {
+      if (target == null)
+         return string;
+      if (string.indexOf(target) == -1)
+         return StringUtils.trimToEmpty(string);
       string = string.substring(string.indexOf(target) + target.length());
       return StringUtils.trimToEmpty(string);
    }

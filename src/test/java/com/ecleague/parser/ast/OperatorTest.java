@@ -28,6 +28,6 @@ public class OperatorTest {
 
       sourceCode = " + 10";
 
-      Assert.assertEquals(operator.parse(sourceCode), " 10");
+      Assert.assertEquals(operator.parse(sourceCode), "10");
    }
 }
