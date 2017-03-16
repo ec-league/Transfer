@@ -5,7 +5,7 @@ package com.ecleague.parser.ast.statement;
  * Date: 2017/3/16<br/>
  * Email: byp5303628@hotmail.com
  */
-public class ForEachStatement implements Statement {
+public class WhileStatement implements Statement {
    /**
     * Take the source code as the param, parse and generate ast object.
     *
