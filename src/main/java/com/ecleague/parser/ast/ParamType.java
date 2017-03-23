@@ -1,5 +1,14 @@
 package com.ecleague.parser.ast;
 
+import com.ecleague.parser.ast.csharp.KeyWord;
+import com.ecleague.parser.ast.exception.ParseSyntaxException;
+import com.ecleague.parser.ast.util.Regex;
+import com.ecleague.parser.ast.util.Util;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Author: EthanPark <br/>
  * Date: 2017/3/5<br/>
@@ -32,6 +41,25 @@ public class ParamType implements SourceParser {
     */
    @Override
    public String parse(String sourceCode) {
-      return null;
+
+      String temp = StringUtils.trimToEmpty(sourceCode);
+
+      Matcher matcher;
+
+      if (temp.startsWith(KeyWord.VAR)) {
+         setParamType(KeyWord.VAR);
+      } else if ((matcher = Pattern.compile(Regex.TYPE).matcher(temp)).find()) {
+         setParamType(matcher.group());
+      } else {
+         throw new ParseSyntaxException(this, sourceCode);
+      }
+
+      temp = Util.trimTarget(temp, getParamType());
+
+      if ((matcher = Pattern.compile(Regex.PARAM).matcher(temp)).find()) {
+         setParamName(matcher.group());
+      }
+
+      return Util.trimTarget(temp, getParamName());
    }
 }
