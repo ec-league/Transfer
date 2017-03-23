@@ -1,6 +1,9 @@
 package com.ecleague.parser.ast.statement;
 
 import com.ecleague.parser.ast.SourceParser;
+import com.ecleague.parser.ast.expression.Expression;
+import com.ecleague.parser.ast.expression.ExpressionImpl;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Author: EthanPark <br/>
@@ -8,6 +11,8 @@ import com.ecleague.parser.ast.SourceParser;
  * Email: byp5303628@hotmail.com
  */
 public class ExecuteStatement implements Statement, SourceParser {
+   private Expression expression;
+
    /**
     * Take the source code as the param, parse and generate ast object.
     *
@@ -15,6 +20,8 @@ public class ExecuteStatement implements Statement, SourceParser {
     */
    @Override
    public String parse(String sourceCode) {
-      return null;
+      String temp = StringUtils.trimToEmpty(sourceCode);
+      expression = new ExpressionImpl();
+      return expression.parse(temp);
    }
 }

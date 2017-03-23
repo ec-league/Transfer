@@ -1,12 +1,11 @@
 package com.ecleague.parser.ast;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.util.Util;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Author: EthanPark <br/>
@@ -29,6 +28,10 @@ public class Operator implements SourceParser {
       CALCULATE_OPERATORS.add(Operators.EQUAL);
       CALCULATE_OPERATORS.add(Operators.BIT_AND);
       CALCULATE_OPERATORS.add(Operators.BIT_OR);
+      CALCULATE_OPERATORS.add(Operators.LT);
+      CALCULATE_OPERATORS.add(Operators.GT);
+      CALCULATE_OPERATORS.add(Operators.LT_EQ);
+      CALCULATE_OPERATORS.add(Operators.GT_EQ);
    }
 
    /**
@@ -79,9 +82,26 @@ public class Operator implements SourceParser {
          if (operatorStr.length() > 1
                && operatorStr.substring(0, 2).equals(Operators.EQUAL))
             operator = Operators.EQUAL;
+         else
+            operator = Operators.ASSIGN;
+         break;
+      case Operators.GT:
+         if (operatorStr.length() > 1
+               && operatorStr.substring(0, 2).equals(Operators.GT_EQ))
+            operator = Operators.GT_EQ;
+         else
+            operator = Operators.GT;
+         break;
+      case Operators.LT:
+         if (operatorStr.length() > 1
+               && operatorStr.substring(0, 2).equals(Operators.LT_EQ))
+            operator = Operators.LT_EQ;
+         else
+            operator = Operators.LT;
          break;
       case Operators.RIGHT_BRACKET:
          operator = "";
+         break;
       }
    }
 

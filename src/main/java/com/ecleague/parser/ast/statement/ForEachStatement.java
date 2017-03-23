@@ -9,28 +9,17 @@ import com.ecleague.parser.ast.expression.ExpressionFactory;
 import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Author: EthanPark <br/>
  * Date: 2017/3/16<br/>
  * Email: byp5303628@hotmail.com
  */
-public class ForEachStatement implements Statement {
+public class ForEachStatement extends BlockStatement implements Statement {
    private ParamType iter;
    private Expression collection;
 
-   private List<Statement> innerStatements;
-
-   /**
-    * Take the source code as the param, parse and generate ast object.
-    *
-    * @param sourceCode
-    * @return left source code.
-    */
    @Override
-   public String parse(String sourceCode) {
+   protected String preProcess(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
 
       if (!temp.startsWith(KeyWord.FOREACH)) {
@@ -39,11 +28,9 @@ public class ForEachStatement implements Statement {
 
       temp = Util.trimTarget(temp, KeyWord.FOREACH);
 
-      //(var a in b)
       temp = Util.trimTarget(temp, Operators.LEFT_BRACKET);
 
       iter = new ParamType();
-
       temp = iter.parse(temp);
 
       temp = Util.trimTarget(temp, KeyWord.IN);
@@ -51,21 +38,7 @@ public class ForEachStatement implements Statement {
       collection = ExpressionFactory.getExpression(temp);
       temp = collection.parse(temp);
 
-      temp = Util.trimTarget(temp, Operators.RIGHT_BRACKET);
-
-      innerStatements = new ArrayList<>();
-      if (temp.startsWith(Operators.LEFT_BRACE)) {
-         temp = Util.trimTarget(temp, Operators.LEFT_BRACE);
-         temp = StatementFactory.processBlock(temp, innerStatements);
-
-         return Util.trimTarget(temp, Operators.RIGHT_BRACE);
-      } else {
-
-         Statement statement = StatementFactory.getStatement(temp);
-         temp = statement.parse(temp);
-         innerStatements.add(statement);
-         return temp;
-      }
+      return Util.trimTarget(temp, Operators.RIGHT_BRACKET);
    }
 
    public ParamType getIter() {
@@ -82,13 +55,5 @@ public class ForEachStatement implements Statement {
 
    public void setCollection(Expression collection) {
       this.collection = collection;
-   }
-
-   public List<Statement> getInnerStatements() {
-      return innerStatements;
-   }
-
-   public void setInnerStatements(List<Statement> innerStatements) {
-      this.innerStatements = innerStatements;
    }
 }

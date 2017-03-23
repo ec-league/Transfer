@@ -22,10 +22,15 @@ public class Operators {
    public static final String NOT = "!";
    public static final String AND = "&&";
    public static final String OR = "||";
-   public static final String EQUAL = "==";
 
    public static final String BIT_AND = "&";
    public static final String BIT_OR = "|";
    public static final String COMMA = ",";
    public static final String SEMICOLON = ";";
+
+   public static final String GT = ">";
+   public static final String LT = "<";
+   public static final String EQUAL = "==";
+   public static final String GT_EQ = ">=";
+   public static final String LT_EQ = "<=";
 }
