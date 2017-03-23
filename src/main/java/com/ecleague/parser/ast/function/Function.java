@@ -1,9 +1,9 @@
 package com.ecleague.parser.ast.function;
 
 import com.ecleague.parser.ast.ParamType;
-import com.ecleague.parser.ast.ReturnStatement;
 import com.ecleague.parser.ast.SourceParser;
 import com.ecleague.parser.ast.expression.Expression;
+import com.ecleague.parser.ast.statement.ReturnStatement;
 import com.ecleague.parser.ast.statement.Statement;
 
 import java.util.ArrayList;

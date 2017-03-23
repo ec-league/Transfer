@@ -9,6 +9,9 @@ import com.ecleague.parser.ast.expression.ExpressionFactory;
 import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Author: EthanPark <br/>
  * Date: 2017/3/16<br/>
@@ -17,6 +20,8 @@ import org.apache.commons.lang.StringUtils;
 public class ForEachStatement implements Statement {
    private ParamType iter;
    private Expression collection;
+
+   private List<Statement> innerStatements;
 
    /**
     * Take the source code as the param, parse and generate ast object.
@@ -48,7 +53,19 @@ public class ForEachStatement implements Statement {
 
       temp = Util.trimTarget(temp, Operators.RIGHT_BRACKET);
 
-      return temp;
+      innerStatements = new ArrayList<>();
+      if (temp.startsWith(Operators.LEFT_BRACE)) {
+         temp = Util.trimTarget(temp, Operators.LEFT_BRACE);
+         temp = StatementFactory.processBlock(temp, innerStatements);
+
+         return Util.trimTarget(temp, Operators.RIGHT_BRACE);
+      } else {
+
+         Statement statement = StatementFactory.getStatement(temp);
+         temp = statement.parse(temp);
+         innerStatements.add(statement);
+         return temp;
+      }
    }
 
    public ParamType getIter() {
@@ -65,5 +82,13 @@ public class ForEachStatement implements Statement {
 
    public void setCollection(Expression collection) {
       this.collection = collection;
+   }
+
+   public List<Statement> getInnerStatements() {
+      return innerStatements;
+   }
+
+   public void setInnerStatements(List<Statement> innerStatements) {
+      this.innerStatements = innerStatements;
    }
 }

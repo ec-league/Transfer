@@ -45,5 +45,11 @@ public class StatementFactoryTest {
       sourceCode = "x = 5 + 6;";
       Assert.assertTrue(StatementFactory
             .getStatement(sourceCode) instanceof ExecuteStatement);
+
+      sourceCode = "return 1;"
+            ;
+      Assert.assertTrue(StatementFactory
+            .getStatement(sourceCode) instanceof ReturnStatement);
+
    }
 }
