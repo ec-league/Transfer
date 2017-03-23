@@ -20,9 +20,7 @@ public abstract class BlockStatement implements Statement {
    @Override
    public String parse(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
-
-      temp = preProcess(sourceCode);
-
+      temp = preProcess(temp);
       return postProcess(temp);
    }
 

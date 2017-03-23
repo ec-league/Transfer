@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
  * Email: byp5303628@hotmail.com
  */
 public class UsingStatement implements Statement {
-
    private List<String> namespaces;
    private String name;
 
