@@ -28,16 +28,29 @@ public class FormatTest {
                 "        /// 订单ID\n" +
                 "        /// </summary>\n" +
                 "        public long OrderID { get; set; }" +
-                "}" +
+
+
+
+
+                                "}" +
                 "}" ;
 
         sourceCode += "if(x == 1){}";
         sourceCode += "if(x == 2) " +
                 "return 2;";
 
+        sourceCode += "#region wewejkwehk" + "\n";
+        sourceCode += "int s = 1;";
+        sourceCode += "#endregion" + "\n";
+
+        sourceCode += "\n" +
+                "/**\n" +
+                " * Created by yun.li on 2017/3/17.\n" +
+                " */";
         sourceCode += "if(x == 3 ||(x == 4)) " +
                 "return 3;";
         Boolean formatResult = PreFormat.formatOriginFlie(sourceCode);
+
 
         Assert.assertEquals(formatResult, true);
 
