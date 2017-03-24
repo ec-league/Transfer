@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
 public class ParamType implements SourceParser {
    private String paramType;
    private String paramName;
+   private boolean out;
+   private boolean ref;
 
    public String getParamType() {
       return paramType;
@@ -61,5 +63,21 @@ public class ParamType implements SourceParser {
       }
 
       return Util.trimTarget(temp, getParamName());
+   }
+
+   public boolean isOut() {
+      return out;
+   }
+
+   public void setOut(boolean out) {
+      this.out = out;
+   }
+
+   public boolean isRef() {
+      return ref;
+   }
+
+   public void setRef(boolean ref) {
+      this.ref = ref;
    }
 }
