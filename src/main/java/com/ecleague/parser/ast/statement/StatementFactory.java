@@ -19,6 +19,7 @@ public class StatementFactory {
          "^[A-Za-z][A-Za-z0-9]* *[A-Za-z0-9].*";
    private static final String USING_STATEMENT = "^using *";
    private static final String RETURN_STATEMENT = "^return *.*";
+   private static final String SWITCHCASE_STATEMENT = "^switch *\\(.*";
 
    public static Statement getStatement(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
@@ -35,7 +36,9 @@ public class StatementFactory {
          return new UsingStatement();
       } else if (temp.matches(DECLARED_STATEMENT)) {
          return new DeclaredStatement();
-      } else {
+      } else if(temp.matches(SWITCHCASE_STATEMENT)){
+         return new SwitchCaseStatement();
+      } else{
          return new ExecuteStatement();
       }
    }
