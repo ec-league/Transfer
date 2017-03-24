@@ -1,5 +1,6 @@
-package com.ecleague.parser.ast;
+package com.ecleague.parser.ast.clazz;
 
+import com.ecleague.parser.ast.SourceParser;
 import com.ecleague.parser.ast.function.Function;
 
 import java.util.List;
