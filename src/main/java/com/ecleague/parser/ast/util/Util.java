@@ -1,11 +1,12 @@
 package com.ecleague.parser.ast.util;
 
-import com.ecleague.parser.ast.exception.ParseSyntaxException;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.ecleague.parser.ast.exception.ParseSyntaxException;
 
 /**
  * @author EthanPark <br/>
@@ -31,12 +32,16 @@ public class Util {
    /**
     * Split the target sourceCode and turn into a list of strings.
     *
-    * @param sourceCode, origin sourceCode
-    * @param list,       result list
-    * @param sep,        separator operator
+    * @param sourceCode,
+    *           origin sourceCode
+    * @param list,
+    *           result list
+    * @param sep,
+    *           separator operator
     * @return
     */
-   public static String processList(String sourceCode, List<String> list, String sep) {
+   public static String processList(String sourceCode, List<String> list,
+         String sep) {
       String temp = StringUtils.trimToEmpty(sourceCode);
 
       while (true) {

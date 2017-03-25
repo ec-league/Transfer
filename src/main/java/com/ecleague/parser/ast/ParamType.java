@@ -1,13 +1,15 @@
 package com.ecleague.parser.ast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.csharp.KeyWord;
+import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Author: EthanPark <br/>
@@ -17,6 +19,8 @@ import java.util.regex.Pattern;
 public class ParamType implements SourceParser {
    private String paramType;
    private String paramName;
+   private String templateName;
+
    private boolean out;
    private boolean ref;
 
@@ -50,19 +54,38 @@ public class ParamType implements SourceParser {
 
       if (temp.startsWith(KeyWord.VAR)) {
          setParamType(KeyWord.VAR);
+         temp = Util.trimTarget(temp, getParamType());
       } else if ((matcher = Pattern.compile(Regex.TYPE).matcher(temp)).find()) {
-         setParamType(matcher.group());
+         String s = matcher.group();
+         setParamType(s);
+         temp = Util.trimTarget(temp, getParamType());
+         if (temp.startsWith(Operators.LT)) {
+            temp = Util.trimTarget(temp, Operators.LT);
+
+            if ((matcher = Pattern.compile(Regex.TYPE).matcher(temp)).find()) {
+               setTemplateName(matcher.group());
+               temp = Util.trimTarget(temp, getTemplateName());
+            }
+            temp = Util.trimTarget(temp, Operators.GT);
+         }
       } else {
          throw new ParseSyntaxException(this, sourceCode);
       }
 
-      temp = Util.trimTarget(temp, getParamType());
 
       if ((matcher = Pattern.compile(Regex.PARAM).matcher(temp)).find()) {
          setParamName(matcher.group());
       }
 
       return Util.trimTarget(temp, getParamName());
+   }
+
+   public String getTemplateName() {
+      return templateName;
+   }
+
+   public void setTemplateName(String templateName) {
+      this.templateName = templateName;
    }
 
    /**

@@ -2,15 +2,17 @@ package com.ecleague.parser.ast.expression;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
 
 /**
  * StringExpressionImpl Tester.
  *
  * @author EthanPark
  * @version 1.0
- * @since <pre>三月 25, 2017</pre>
+ * @since
+ * 
+ *        <pre>
+ * 三月 25, 2017
+ *        </pre>
  */
 public class StringExpressionImplTest {
 

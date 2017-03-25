@@ -1,12 +1,13 @@
 package com.ecleague.parser.ast.expression;
 
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.regex.Pattern;
 
 /**
  * @author EthanPark <br/>

@@ -1,8 +1,8 @@
 package com.ecleague.parser.ast;
 
-import com.ecleague.parser.ast.clazz.Clazz;
-
 import java.util.List;
+
+import com.ecleague.parser.ast.clazz.Clazz;
 
 /**
  * Author: EthanPark <br/>

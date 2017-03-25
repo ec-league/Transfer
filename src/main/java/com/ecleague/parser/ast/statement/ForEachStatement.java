@@ -1,5 +1,7 @@
 package com.ecleague.parser.ast.statement;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.ParamType;
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
@@ -7,7 +9,6 @@ import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.expression.Expression;
 import com.ecleague.parser.ast.expression.ExpressionFactory;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Author: EthanPark <br/>

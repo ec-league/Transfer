@@ -1,8 +1,9 @@
 package com.ecleague.parser.ast.statement;
 
-import com.ecleague.parser.ast.util.PreFormat;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.ecleague.parser.ast.util.PreFormat;
 
 /**
  * Created by yun.li on 2017/3/25.
@@ -28,9 +29,9 @@ public class IfStatementTest {
    }
 
    @Test
-   public void testParse(){
-      String sourceCode ="if (!IsProductMatch(upgradeProduct, entity))\n" +
-            "                        continue;";
+   public void testParse() {
+      String sourceCode = "if (!IsProductMatch(upgradeProduct, entity))\n"
+            + "                        continue;";
       sourceCode = PreFormat.removeUnusedInfo(sourceCode);
       IfStatement statement = new IfStatement();
 
@@ -38,9 +39,10 @@ public class IfStatementTest {
    }
 
    @Test
-   public void testParse1(){
-      String sourceCode = " if (!product.MatchFlightNo(entity.DepartMainFlightNo))\n" +
-            "                return false;";
+   public void testParse1() {
+      String sourceCode =
+            " if (!product.MatchFlightNo(entity.DepartMainFlightNo))\n"
+                  + "                return false;";
 
       sourceCode = PreFormat.removeUnusedInfo(sourceCode);
 

@@ -46,8 +46,7 @@ public class StatementFactoryTest {
       Assert.assertTrue(StatementFactory
             .getStatement(sourceCode) instanceof ExecuteStatement);
 
-      sourceCode = "return 1;"
-            ;
+      sourceCode = "return 1;";
       Assert.assertTrue(StatementFactory
             .getStatement(sourceCode) instanceof ReturnStatement);
 

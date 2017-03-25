@@ -5,11 +5,5 @@ package com.ecleague.parser.ast.expression;
  * @version 1.0
  */
 public enum ExpressionType {
-   BOOL,
-   INT,
-   FLOAT,
-   LONG,
-   DOUBLE,
-   OBJECT,
-   DECIMAL
+   BOOL, INT, FLOAT, LONG, DOUBLE, OBJECT, DECIMAL
 }

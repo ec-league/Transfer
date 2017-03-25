@@ -1,14 +1,15 @@
 package com.ecleague.parser.ast.clazz;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author EthanPark
@@ -47,7 +48,8 @@ public class BlockImpl implements Block {
          temp = getSubBlock().parse(temp);
          block.setReturnType(getType());
          return temp;
-      } else if (tempSourceCode.startsWith(Operators.ASSIGN) || tempSourceCode.startsWith(Operators.SEMICOLON)) {
+      } else if (tempSourceCode.startsWith(Operators.ASSIGN)
+            || tempSourceCode.startsWith(Operators.SEMICOLON)) {
          FieldBlock block = new FieldBlock();
          setSubBlock(block);
          block.setReturnType(getType());

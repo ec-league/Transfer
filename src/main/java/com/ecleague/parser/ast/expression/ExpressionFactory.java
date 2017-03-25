@@ -1,12 +1,13 @@
 package com.ecleague.parser.ast.expression;
 
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.util.Regex;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.regex.Pattern;
 
 /**
  * @author EthanPark <br/>
@@ -22,9 +23,9 @@ public class ExpressionFactory {
       sourceCode = StringUtils.trimToEmpty(sourceCode);
       if ((Pattern.compile(NEW_EXPRESSION).matcher(sourceCode)).find()) {
          return new NewExpressionImpl();
-      } else if (sourceCode.startsWith("\"")){
+      } else if (sourceCode.startsWith("\"")) {
          return new StringExpressionImpl();
-      }else if (Pattern.compile(CAST_EXPRESSION).matcher(sourceCode).find()) {
+      } else if (Pattern.compile(CAST_EXPRESSION).matcher(sourceCode).find()) {
          return new CastExpressionImpl();
       } else if ((Pattern.compile(Regex.NUMBERS).matcher(sourceCode)).find()) {
          return new NumberExpressionImpl();

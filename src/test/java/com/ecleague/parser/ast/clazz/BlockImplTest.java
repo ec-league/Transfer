@@ -1,8 +1,9 @@
 package com.ecleague.parser.ast.clazz;
 
-import com.ecleague.parser.ast.util.PreFormat;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.ecleague.parser.ast.util.PreFormat;
 
 /**
  * BlockImpl Tester.

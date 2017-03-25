@@ -1,8 +1,9 @@
 package com.ecleague.parser.ast.statement;
 
-import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.ecleague.parser.ast.exception.ParseSyntaxException;
 
 /**
  * UsingStatement Tester.
@@ -27,9 +28,11 @@ public class UsingStatementTest {
 
       Assert.assertEquals(statement.getNamespaces().size(), 3);
 
-      sourceCode = "using DomainModel = Ctrip.IntlFlight.DomainModel; using System.Collections.Generic;";
+      sourceCode =
+            "using DomainModel = Ctrip.IntlFlight.DomainModel; using System.Collections.Generic;";
 
-      Assert.assertEquals(statement.parse(sourceCode), "using System.Collections.Generic;");
+      Assert.assertEquals(statement.parse(sourceCode),
+            "using System.Collections.Generic;");
 
       Assert.assertEquals(statement.getNamespaces().size(), 3);
       Assert.assertEquals(statement.getName(), "DomainModel");

@@ -1,9 +1,10 @@
 package com.ecleague.parser.ast.statement;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.SourceParser;
 import com.ecleague.parser.ast.expression.Expression;
 import com.ecleague.parser.ast.expression.ExpressionImpl;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Author: EthanPark <br/>

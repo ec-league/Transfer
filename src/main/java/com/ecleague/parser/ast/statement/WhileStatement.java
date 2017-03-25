@@ -1,5 +1,7 @@
 package com.ecleague.parser.ast.statement;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
@@ -7,7 +9,6 @@ import com.ecleague.parser.ast.expression.Expression;
 import com.ecleague.parser.ast.expression.ExpressionImpl;
 import com.ecleague.parser.ast.java.JavaKeyWord;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Author: EthanPark <br/>
@@ -55,9 +56,8 @@ public class WhileStatement extends BlockStatement implements Statement {
       javaWhile.append(getExpression().toJavaCode());
       javaWhile.append(Operators.RIGHT_BRACKET);
       javaWhile.append(Operators.LEFT_BRACE).append("\n");
-      if(getInnerStatements()!= null &&
-            !getInnerStatements().isEmpty()){
-         for(Statement statement : getInnerStatements()){
+      if (getInnerStatements() != null && !getInnerStatements().isEmpty()) {
+         for (Statement statement : getInnerStatements()) {
             javaWhile.append(statement.toJavaCode());
             javaWhile.append("\n");
          }

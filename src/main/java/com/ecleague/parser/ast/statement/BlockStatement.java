@@ -1,9 +1,9 @@
 package com.ecleague.parser.ast.statement;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @author EthanPark <br/>
@@ -24,7 +24,8 @@ public abstract class BlockStatement implements Statement {
 
    protected String postProcess(String sourceCode) {
       setInnerStatements(new ArrayList<Statement>());
-      return StatementFactory.processInnerBlock(sourceCode, getInnerStatements());
+      return StatementFactory.processInnerBlock(sourceCode,
+            getInnerStatements());
    }
 
    public List<Statement> getInnerStatements() {

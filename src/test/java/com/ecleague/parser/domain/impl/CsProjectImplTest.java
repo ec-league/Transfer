@@ -2,7 +2,6 @@ package com.ecleague.parser.domain.impl;
 
 import java.io.File;
 
-import com.ecleague.parser.domain.impl.CsProjectImpl;
 import org.junit.Assert;
 import org.junit.Test;
 

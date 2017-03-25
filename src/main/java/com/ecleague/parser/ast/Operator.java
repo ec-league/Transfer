@@ -1,11 +1,12 @@
 package com.ecleague.parser.ast;
 
-import com.ecleague.parser.ast.csharp.Operators;
-import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.ecleague.parser.ast.csharp.Operators;
+import com.ecleague.parser.ast.util.Util;
 
 /**
  * Author: EthanPark <br/>

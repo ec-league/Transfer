@@ -1,16 +1,17 @@
 package com.ecleague.parser.ast.statement;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Author: EthanPark <br/>

@@ -34,7 +34,8 @@ public class CsConfigurationImplTest {
 
    @Test(expected = IllegalArgumentException.class)
    public void testConstructor1() {
-      File directory = new File(this.getClass().getResource("/").getPath() + "/BussinessManager.csproj");
+      File directory = new File(this.getClass().getResource("/").getPath()
+            + "/BussinessManager.csproj");
 
       CsConfiguration configuration = new CsConfigurationImpl(directory);
    }

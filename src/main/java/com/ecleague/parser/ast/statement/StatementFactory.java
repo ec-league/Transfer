@@ -1,11 +1,12 @@
 package com.ecleague.parser.ast.statement;
 
-import com.ecleague.parser.ast.csharp.Operators;
-import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.List;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.ecleague.parser.ast.csharp.Operators;
+import com.ecleague.parser.ast.util.Util;
 
 /**
  * Author: EthanPark <br/>

@@ -12,7 +12,7 @@ import org.junit.Test;
  */
 public class ParamTypeTest {
    @Test
-   public void testParse(){
+   public void testParse() {
       String sourceCode = "Abc abc;";
 
       ParamType paramType = new ParamType();

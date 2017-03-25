@@ -1,8 +1,9 @@
 package com.ecleague.parser.ast.expression;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * @author EthanPark <br/>
@@ -19,18 +20,19 @@ public class StringExpressionImpl extends TypeExpressionImpl {
       String temp = StringUtils.trimToEmpty(sourceCode);
       getParamType().setParamType("string");
 
-      if (temp.startsWith("\"")){
+      if (temp.startsWith("\"")) {
          temp = Util.trimTarget(temp, "\"");
 
          int start = 0;
-         while (true){
+         while (true) {
             int pos = temp.indexOf("\\\"", start);
             if (pos == -1)
                break;
             start = pos + 2;
          }
 
-         setValue(temp.substring(0, temp.indexOf("\"", start == 0 ? 0 : start)));
+         setValue(
+               temp.substring(0, temp.indexOf("\"", start == 0 ? 0 : start)));
          temp = Util.trimTarget(temp, getValue());
          temp = Util.trimTarget(temp, "\"");
          return temp;

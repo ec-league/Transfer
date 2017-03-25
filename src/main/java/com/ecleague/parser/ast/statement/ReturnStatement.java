@@ -1,26 +1,27 @@
 package com.ecleague.parser.ast.statement;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.expression.Expression;
 import com.ecleague.parser.ast.expression.ExpressionImpl;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * @author EthanPark <br/>
  * @version 1.0
  */
-public class ReturnStatement implements Statement{
+public class ReturnStatement implements Statement {
    private Expression expression;
 
    @Override
    public String parse(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
 
-      if (!temp.startsWith(KeyWord.RETURN)){
-          throw new ParseSyntaxException(this, sourceCode);
+      if (!temp.startsWith(KeyWord.RETURN)) {
+         throw new ParseSyntaxException(this, sourceCode);
       }
 
       temp = Util.trimTarget(temp, KeyWord.RETURN);

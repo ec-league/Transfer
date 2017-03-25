@@ -1,14 +1,15 @@
 package com.ecleague.parser.ast.expression;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author EthanPark <br/>
@@ -18,6 +19,10 @@ public class ExecuteExpressionImpl extends AbstractExpression
       implements Expression {
 
    private ExecuteExpressionImpl next;
+
+   private String templateName;
+
+   private String signature;
 
    @Override
    public String getExpressionType() {
@@ -34,6 +39,13 @@ public class ExecuteExpressionImpl extends AbstractExpression
          String s = matcher.group();
          s = s.substring(0, s.length() - 1);
 
+         if (s.indexOf(Operators.LT) != -1) {
+            setSignature(s.substring(0, s.indexOf(Operators.LT)));
+            setTemplateName(s.substring(s.indexOf(Operators.LT) + 1,
+                  s.indexOf(Operators.GT)));
+         } else {
+            setSignature(s);
+         }
          temp = Util.trimTarget(temp, s);
 
          temp = Util.trimTarget(temp, Operators.LEFT_BRACKET);
@@ -53,8 +65,8 @@ public class ExecuteExpressionImpl extends AbstractExpression
             temp = Util.trimTarget(temp, Operators.RIGHT_BRACKET);
             if (temp.startsWith(".")) {
                temp = Util.trimTarget(temp, ".");
-               next = new ExecuteExpressionImpl();
-               return next.parse(temp);
+               setNext(new ExecuteExpressionImpl());
+               return getNext().parse(temp);
             }
             return temp;
          }
@@ -65,8 +77,8 @@ public class ExecuteExpressionImpl extends AbstractExpression
 
          temp = Util.trimTarget(temp, s);
          temp = Util.trimTarget(temp, ".");
-         next = new ExecuteExpressionImpl();
-         return next.parse(temp);
+         setNext(new ExecuteExpressionImpl());
+         return getNext().parse(temp);
       } else if ((matcher = Pattern.compile(Regex.PARAM).matcher(temp))
             .find()) {
          String s = matcher.group();
@@ -143,5 +155,21 @@ public class ExecuteExpressionImpl extends AbstractExpression
 
    public void setNext(ExecuteExpressionImpl next) {
       this.next = next;
+   }
+
+   public String getTemplateName() {
+      return templateName;
+   }
+
+   public void setTemplateName(String templateName) {
+      this.templateName = templateName;
+   }
+
+   public String getSignature() {
+      return signature;
+   }
+
+   public void setSignature(String signature) {
+      this.signature = signature;
    }
 }

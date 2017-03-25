@@ -1,12 +1,9 @@
 package com.ecleague.parser.ast.util;
 
-import com.ecleague.parser.ast.csharp.Operators;
-import com.ecleague.parser.exception.PreFormatException;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.ecleague.parser.ast.csharp.Operators;
 
 /**
  * Created by yun.li on 2017/3/17.

@@ -3,8 +3,6 @@ package com.ecleague.parser.ast.expression;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.ecleague.parser.ast.csharp.KeyWord;
-
 /**
  * ExecuteExpressionImpl Tester.
  * 
@@ -36,5 +34,16 @@ public class ExecuteExpressionImplTest {
 
       sourceCode = "someFunction1(A).someFunction2(A, out B)";
       Assert.assertEquals(executeExpression.parse(sourceCode), "");
+   }
+
+   @Test
+   public void testParse1() {
+      ExecuteExpressionImpl executeExpression = new ExecuteExpressionImpl();
+      String sourceCode = "CacheFactory.GetCache<IUpgradeProductCache>()";
+
+      Assert.assertEquals(executeExpression.parse(sourceCode), "");
+
+      Assert.assertEquals(executeExpression.getNext().getTemplateName(),
+            "IUpgradeProductCache");
    }
 }
