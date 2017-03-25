@@ -59,7 +59,7 @@ public class StatementFactory {
     */
    public static String processBlock(String sourceCode,
                                      List<Statement> statements) {
-      while (sourceCode.startsWith(Operators.RIGHT_BRACE)) {
+      while (!sourceCode.startsWith(Operators.RIGHT_BRACE)) {
          Statement statement = getStatement(sourceCode);
 
          sourceCode = statement.parse(sourceCode);
@@ -67,6 +67,12 @@ public class StatementFactory {
          statements.add(statement);
 
          if (statement instanceof ReturnStatement) {
+            break;
+         }
+         if (statement instanceof ContinueStatement) {
+            break;
+         }
+         if (statement instanceof BreakStatement) {
             break;
          }
       }

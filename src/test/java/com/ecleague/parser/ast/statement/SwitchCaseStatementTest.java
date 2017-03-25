@@ -3,8 +3,6 @@ package com.ecleague.parser.ast.statement;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by coraline on 17/3/25.
  */
@@ -14,13 +12,13 @@ public class SwitchCaseStatementTest {
 
         String sourceCode = "switch (s){\n" +
                 "            case 1:\n" +
-                "                func();\n" +
-                "                break;;\n" +
+                "                \n" +
+                "                return;\n" +
                 "            case 2:\n" +
-                "                func3();\n" +
-                "                break;\n" +
+                "                \n" +
+                "                return;\n" +
                 "                default:\n" +
-                "                    break;\n" +
+                "                    return;\n" +
                 "        }";
 
 

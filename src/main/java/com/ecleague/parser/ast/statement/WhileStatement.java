@@ -24,6 +24,7 @@ public class WhileStatement extends BlockStatement implements Statement {
       if (!temp.startsWith(KeyWord.WHILE))
          throw new ParseSyntaxException(this, sourceCode);
 
+      temp = Util.trimTarget(temp, KeyWord.WHILE);
       temp = Util.trimTarget(temp, Operators.LEFT_BRACKET);
 
       expression = new ExpressionImpl();
