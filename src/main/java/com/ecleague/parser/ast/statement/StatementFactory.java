@@ -19,7 +19,9 @@ public class StatementFactory {
          "^[A-Za-z][A-Za-z0-9]* *[A-Za-z0-9].*";
    private static final String USING_STATEMENT = "^using *";
    private static final String RETURN_STATEMENT = "^return *.*";
-   private static final String SWITCHCASE_STATEMENT = "^switch *\\(.*";
+   private static final String SWITCH_CASE_STATEMENT = "^switch *\\(.*";
+   private static final String BREAK_STATEMENT = "^break!\\d";
+   private static final String CONTINUE_STATEMENT = "^continue!\\d";
 
    public static Statement getStatement(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
@@ -28,6 +30,10 @@ public class StatementFactory {
          return new ForStatement();
       } else if (temp.matches(RETURN_STATEMENT)) {
          return new ReturnStatement();
+      } else if (temp.matches(BREAK_STATEMENT)) {
+         return new BreakStatement();
+      } else if (temp.matches(CONTINUE_STATEMENT)) {
+         return new ContinueStatement();
       } else if (temp.matches(FOREACH_STATEMENT)) {
          return new ForEachStatement();
       } else if (temp.matches(WHILE_STATEMENT)) {
@@ -36,9 +42,9 @@ public class StatementFactory {
          return new UsingStatement();
       } else if (temp.matches(DECLARED_STATEMENT)) {
          return new DeclaredStatement();
-      } else if(temp.matches(SWITCHCASE_STATEMENT)){
+      } else if (temp.matches(SWITCH_CASE_STATEMENT)) {
          return new SwitchCaseStatement();
-      } else{
+      } else {
          return new ExecuteStatement();
       }
    }
@@ -46,13 +52,13 @@ public class StatementFactory {
    /**
     * Handle many lines of code. Until reach a return statement or reach a }
     * operator.
-    * 
+    *
     * @param sourceCode
     * @param statements
     * @return
     */
    public static String processBlock(String sourceCode,
-         List<Statement> statements) {
+                                     List<Statement> statements) {
       while (sourceCode.startsWith(Operators.RIGHT_BRACE)) {
          Statement statement = getStatement(sourceCode);
 
