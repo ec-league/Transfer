@@ -22,6 +22,7 @@ public class KeyWord {
    public static final String DELEGATE = "delegate";
    public static final String DOUBLE = "double";
    public static final String ELSE = "else";
+   public static final String ELSEIF = "else if";
    public static final String ENUM = "enum";
    public static final String FALSE = "False";
    public static final String FINALLY = "finally";

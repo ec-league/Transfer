@@ -1,6 +1,7 @@
 package com.ecleague.parser.ast.statement;
 
 import com.ecleague.parser.ast.csharp.Operators;
+import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
@@ -58,7 +59,7 @@ public class StatementFactory {
     * @return
     */
    public static String processBlock(String sourceCode,
-                                     List<Statement> statements) {
+         List<Statement> statements) {
       while (!sourceCode.startsWith(Operators.RIGHT_BRACE)) {
          Statement statement = getStatement(sourceCode);
 
@@ -77,5 +78,21 @@ public class StatementFactory {
          }
       }
       return sourceCode;
+   }
+
+   public static String processInnerBlock(String sourceCode,
+         List<Statement> statements) {
+      String temp = StringUtils.trimToEmpty(sourceCode);
+
+      if (temp.startsWith(Operators.LEFT_BRACE)) {
+         temp = Util.trimTarget(temp, Operators.LEFT_BRACE);
+         temp = processBlock(temp, statements);
+         return Util.trimTarget(temp, Operators.RIGHT_BRACE);
+      } else {
+         Statement statement = getStatement(temp);
+         temp = statement.parse(temp);
+         statements.add(statement);
+         return temp;
+      }
    }
 }

@@ -49,6 +49,11 @@ public class FormatTest {
                 " */";
         sourceCode += "if(x == 3 ||(x == 4)) " +
                 "return 3;";
+
+        sourceCode += " ~First()                    // 析构函数\n" +
+                "            {\n" +
+                "                Console.WriteLine(\"~First()析构函数\");\n" +
+                "            }";
         Boolean formatResult = PreFormat.formatOriginFlie(sourceCode);
 
 
