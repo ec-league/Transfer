@@ -5,7 +5,8 @@ using Ctrip.IntlFlight.XProductSearch.CacheManager;
 using Ctrip.IntlFlight.XProductSearch.DomainModel;
 using Utilities.Enums;
 
-namespace Ctrip.IntlFlight.XProductSearch.BussinessManager.Upgrade
+namespace Ctrip.
+IntlFlight.XProductSearch.BussinessManager.Upgrade
 {
     public class UpgradeRulesMatcher : IUpgradeRulesMatcher
     {

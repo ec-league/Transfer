@@ -54,6 +54,9 @@ public class UsingStatement implements Statement {
             namespaces.add(firstKey);
             temp = Util.trimTarget(temp, ".");
             return processNameSpaces(temp);
+         } else if (temp.startsWith(Operators.SEMICOLON)) {
+            temp = Util.trimTarget(temp, Operators.SEMICOLON);
+            return temp;
          }
       }
       throw new ParseSyntaxException(this, sourceCode);

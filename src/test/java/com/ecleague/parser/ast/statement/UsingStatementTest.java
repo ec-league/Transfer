@@ -27,9 +27,9 @@ public class UsingStatementTest {
 
       Assert.assertEquals(statement.getNamespaces().size(), 3);
 
-      sourceCode = "using DomainModel = Ctrip.IntlFlight.DomainModel; abc";
+      sourceCode = "using DomainModel = Ctrip.IntlFlight.DomainModel; using System.Collections.Generic;";
 
-      Assert.assertEquals(statement.parse(sourceCode), "abc");
+      Assert.assertEquals(statement.parse(sourceCode), "using System.Collections.Generic;");
 
       Assert.assertEquals(statement.getNamespaces().size(), 3);
       Assert.assertEquals(statement.getName(), "DomainModel");
