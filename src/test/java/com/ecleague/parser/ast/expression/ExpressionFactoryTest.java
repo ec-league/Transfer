@@ -49,5 +49,9 @@ public class ExpressionFactoryTest {
       sourceCode = "(a + b) + c";
       Assert.assertTrue(ExpressionFactory
             .getExpression(sourceCode) instanceof ExpressionImpl);
+
+      sourceCode = "\"\"";
+      Assert.assertTrue(ExpressionFactory
+            .getExpression(sourceCode) instanceof StringExpressionImpl);
    }
 }

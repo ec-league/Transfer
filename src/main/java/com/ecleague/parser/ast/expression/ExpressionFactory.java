@@ -22,7 +22,9 @@ public class ExpressionFactory {
       sourceCode = StringUtils.trimToEmpty(sourceCode);
       if ((Pattern.compile(NEW_EXPRESSION).matcher(sourceCode)).find()) {
          return new NewExpressionImpl();
-      } else if (Pattern.compile(CAST_EXPRESSION).matcher(sourceCode).find()) {
+      } else if (sourceCode.startsWith("\"")){
+         return new StringExpressionImpl();
+      }else if (Pattern.compile(CAST_EXPRESSION).matcher(sourceCode).find()) {
          return new CastExpressionImpl();
       } else if ((Pattern.compile(Regex.NUMBERS).matcher(sourceCode)).find()) {
          return new NumberExpressionImpl();
