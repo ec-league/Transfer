@@ -14,4 +14,14 @@ public class EmptyExpression extends AbstractExpression {
    public String parse(String sourceCode) {
       return "";
    }
+
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
 }

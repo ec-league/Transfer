@@ -32,6 +32,16 @@ public class ReturnStatement implements Statement{
       return expression.parse(temp);
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    public Expression getExpression() {
       return expression;
    }

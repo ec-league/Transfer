@@ -82,6 +82,16 @@ public class DeclaredStatement implements Statement, SourceParser {
       }
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    private String processVariable(String sourceCode) {
       sourceCode = StringUtils.trimToEmpty(sourceCode);
       Matcher matcher;

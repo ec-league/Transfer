@@ -67,6 +67,16 @@ public class PropertyBlock implements Block {
       return temp;
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    private String processSetAndGet(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
 

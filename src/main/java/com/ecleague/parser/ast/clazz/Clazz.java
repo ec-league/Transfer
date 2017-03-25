@@ -33,6 +33,16 @@ public class Clazz implements SourceParser {
 
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    public String parseClazz(String sourceCode) {
 
       String temp = StringUtils.trimToEmpty(sourceCode);

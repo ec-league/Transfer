@@ -88,6 +88,16 @@ public class ExecuteExpressionImpl extends AbstractExpression
    }
 
    /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
+   /**
     * Process function params.
     * 
     * @param sourceCode

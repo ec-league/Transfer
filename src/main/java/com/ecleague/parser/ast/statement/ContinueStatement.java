@@ -32,4 +32,14 @@ public class ContinueStatement implements Statement {
 
       return Util.trimTarget(temp, Operators.SEMICOLON);
    }
+
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
 }

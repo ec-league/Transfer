@@ -43,4 +43,14 @@ public class NewExpressionImpl extends AbstractExpression
          throw new ParseSyntaxException(this, sourceCode);
       }
    }
+
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
 }

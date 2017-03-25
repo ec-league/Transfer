@@ -24,4 +24,14 @@ public class ExecuteStatement implements Statement, SourceParser {
       expression = new ExpressionImpl();
       return expression.parse(temp);
    }
+
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
 }

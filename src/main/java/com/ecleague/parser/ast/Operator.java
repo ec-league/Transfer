@@ -53,6 +53,16 @@ public class Operator implements SourceParser {
       return Util.trimTarget(sourceCode, getOperator());
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    public String getOperator() {
       return operator;
    }

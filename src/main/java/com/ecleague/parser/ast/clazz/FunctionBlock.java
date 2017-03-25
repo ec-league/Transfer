@@ -72,6 +72,16 @@ public class FunctionBlock implements Block {
       }
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    private String processParams(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
 

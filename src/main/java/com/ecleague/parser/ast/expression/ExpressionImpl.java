@@ -72,6 +72,16 @@ public class ExpressionImpl extends AbstractExpression implements Expression {
       return right.parse(temp);
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    @Override
    public ExpressionType getExpressionType() {
       return getLeft().getExpressionType();

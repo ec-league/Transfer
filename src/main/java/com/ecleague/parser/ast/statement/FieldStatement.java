@@ -10,4 +10,14 @@ public class FieldStatement implements Statement {
    public String parse(String sourceCode) {
       return null;
    }
+
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
 }

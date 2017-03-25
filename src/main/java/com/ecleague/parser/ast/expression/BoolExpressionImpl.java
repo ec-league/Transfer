@@ -39,6 +39,16 @@ public class BoolExpressionImpl extends TypeExpressionImpl
       }
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    @Override
    public ExpressionType getExpressionType() {
       return ExpressionType.BOOL;

@@ -90,4 +90,14 @@ public class IfStatement implements Statement {
       }
       return temp;
    }
+
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
 }

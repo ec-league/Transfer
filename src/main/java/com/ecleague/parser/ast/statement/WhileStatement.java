@@ -40,4 +40,14 @@ public class WhileStatement extends BlockStatement implements Statement {
    public void setExpression(Expression expression) {
       this.expression = expression;
    }
+
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
 }

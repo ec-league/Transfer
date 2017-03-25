@@ -86,6 +86,16 @@ public class Function implements SourceParser {
       return null;
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    public String getFunctionName() {
       return functionName;
    }

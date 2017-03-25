@@ -62,6 +62,16 @@ public class UsingStatement implements Statement {
       throw new ParseSyntaxException(this, sourceCode);
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    private String processNameSpaces(String sourceCode) {
       Matcher matcher;
 

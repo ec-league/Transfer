@@ -69,6 +69,16 @@ public class SwitchCaseStatement implements Statement {
 
     }
 
+    /**
+     * Take the ast element to Java code.
+     *
+     * @return
+     */
+    @Override
+    public String toJavaCode() {
+        return null;
+    }
+
 
     public static class CaseBlock{
         private Expression expression;

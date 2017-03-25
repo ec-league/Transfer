@@ -81,4 +81,14 @@ public class ForStatement extends BlockStatement implements Statement {
    public void setBreakExpression(Expression breakExpression) {
       this.breakExpression = breakExpression;
    }
+
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
 }

@@ -54,6 +54,16 @@ public class FieldBlock implements Block {
       }
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    public String getFiledName() {
       return filedName;
    }

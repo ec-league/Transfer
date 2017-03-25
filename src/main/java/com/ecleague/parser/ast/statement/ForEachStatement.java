@@ -56,4 +56,14 @@ public class ForEachStatement extends BlockStatement implements Statement {
    public void setCollection(Expression collection) {
       this.collection = collection;
    }
+
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
 }

@@ -65,6 +65,16 @@ public class ParamType implements SourceParser {
       return Util.trimTarget(temp, getParamName());
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    public boolean isOut() {
       return out;
    }

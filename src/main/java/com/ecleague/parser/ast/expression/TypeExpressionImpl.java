@@ -33,6 +33,16 @@ public class TypeExpressionImpl extends AbstractExpression
       return parseNext(temp);
    }
 
+   /**
+    * Take the ast element to Java code.
+    *
+    * @return
+    */
+   @Override
+   public String toJavaCode() {
+      return null;
+   }
+
    protected String parseNext(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
 
