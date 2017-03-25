@@ -43,7 +43,7 @@ public class ExecuteExpressionImplTest {
 
       Assert.assertEquals(executeExpression.parse(sourceCode), "");
 
-      Assert.assertEquals(executeExpression.getNext().getTemplateName(),
+      Assert.assertEquals(executeExpression.getNext().getTemplateNames().get(0),
             "IUpgradeProductCache");
    }
 }

@@ -24,5 +24,7 @@ public class NewExpressionImplTest {
       NewExpressionImpl expression = new NewExpressionImpl();
 
       Assert.assertEquals(expression.parse(sourceCode), "");
+
+
    }
 }

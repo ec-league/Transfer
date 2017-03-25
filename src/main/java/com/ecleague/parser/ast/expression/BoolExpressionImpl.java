@@ -48,7 +48,13 @@ public class BoolExpressionImpl extends TypeExpressionImpl
     */
    @Override
    public String toJavaCode() {
-      return null;
+      StringBuilder sb = new StringBuilder();
+      if (not)
+         sb.append(Operators.NOT);
+      if (getExpression() == null)
+         return sb.append(getParamType().getParamName()).toString();
+      else
+         return sb.append(getExpression().toJavaCode()).toString();
    }
 
    @Override

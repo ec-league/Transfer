@@ -80,7 +80,15 @@ public class ExpressionImpl extends AbstractExpression implements Expression {
     */
    @Override
    public String toJavaCode() {
-      return null;
+      StringBuilder sb = new StringBuilder(Operators.LEFT_BRACKET);
+      if (getRight() == null) {
+         sb.append(getLeft().toJavaCode());
+      } else {
+         sb.append(getLeft().toJavaCode()).append(" ")
+               .append(getOperator().toJavaCode()).append(" ")
+               .append(getRight().toJavaCode());
+      }
+      return sb.append(Operators.RIGHT_BRACKET).toString();
    }
 
    @Override

@@ -44,7 +44,8 @@ public class NewExpressionImpl extends AbstractExpression
     */
    @Override
    public String toJavaCode() {
-      return null;
+      StringBuilder sb = new StringBuilder(KeyWord.NEW).append(" ");
+      return sb.append(getNext().toJavaCode()).toString();
    }
 
    public ExecuteExpressionImpl getNext() {

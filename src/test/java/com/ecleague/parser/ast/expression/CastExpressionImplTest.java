@@ -38,5 +38,15 @@ public class CastExpressionImplTest {
       Assert.assertEquals(expression.getParamType().getParamType(), "int");
    }
 
+   @Test
+   public void testToJavaCode() {
+      String sourceCode = "(int) a";
+
+      CastExpressionImpl expression = new CastExpressionImpl();
+
+      Assert.assertEquals(expression.parse(sourceCode), "");
+
+      Assert.assertEquals(expression.toJavaCode(), "(int) a");
+   }
 
 }

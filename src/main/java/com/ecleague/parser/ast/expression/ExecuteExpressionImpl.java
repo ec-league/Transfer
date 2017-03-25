@@ -1,5 +1,7 @@
 package com.ecleague.parser.ast.expression;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +22,9 @@ public class ExecuteExpressionImpl extends AbstractExpression
 
    private ExecuteExpressionImpl next;
 
-   private String templateName;
+   private List<String> templateNames;
+
+   private List<Expression> params;
 
    private String signature;
 
@@ -41,8 +45,10 @@ public class ExecuteExpressionImpl extends AbstractExpression
 
          if (s.indexOf(Operators.LT) != -1) {
             setSignature(s.substring(0, s.indexOf(Operators.LT)));
-            setTemplateName(s.substring(s.indexOf(Operators.LT) + 1,
-                  s.indexOf(Operators.GT)));
+            String templates = s.substring(s.indexOf(Operators.LT) + 1,
+                  s.indexOf(Operators.GT));
+            setTemplateNames(new ArrayList<String>());
+            Util.processList(templates, getTemplateNames(), Operators.COMMA);
          } else {
             setSignature(s);
          }
@@ -97,7 +103,40 @@ public class ExecuteExpressionImpl extends AbstractExpression
     */
    @Override
    public String toJavaCode() {
-      return null;
+      StringBuilder sb = new StringBuilder();
+
+      sb.append(getSignature());
+
+      if (getTemplateNames() != null && !getTemplateNames().isEmpty()) {
+         sb.append(Operators.LT);
+         List<String> templateNames1 = getTemplateNames();
+         for (int i = 0; i < templateNames1.size(); i++) {
+            String templateName = templateNames1.get(i);
+            sb.append(templateName);
+
+            if (i != templateNames1.size() - 1)
+               sb.append(", ");
+         }
+         sb.append(Operators.GT);
+      }
+
+      sb.append(Operators.LEFT_BRACKET);
+
+      if (getParams() != null && !getParams().isEmpty()) {
+         for (int i = 0; i < getParams().size(); i++) {
+            sb.append(getParams().get(i).toJavaCode());
+
+            if (i != getParams().size() - 1)
+               sb.append(", ");
+         }
+      }
+
+      sb.append(Operators.RIGHT_BRACKET);
+
+      if (getNext() == null)
+         return sb.toString();
+      else
+         return sb.append(".").append(getNext().toJavaCode()).toString();
    }
 
    /**
@@ -109,6 +148,7 @@ public class ExecuteExpressionImpl extends AbstractExpression
    private String processParams(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
 
+      setParams(new ArrayList<Expression>());
       Expression e = new ExpressionImpl();
       if (temp.startsWith(KeyWord.OUT)) {
          e.setOut();
@@ -123,6 +163,7 @@ public class ExecuteExpressionImpl extends AbstractExpression
       if (Pattern.compile(Regex.VARIABLE).matcher(temp).find()) {
          temp = e.parse(temp);
          temp = StringUtils.trimToEmpty(temp);
+         getParams().add(e);
       } else {
          throw new ParseSyntaxException(this, sourceCode);
       }
@@ -143,6 +184,7 @@ public class ExecuteExpressionImpl extends AbstractExpression
          }
 
          temp = e.parse(temp);
+         getParams().add(e);
          temp = StringUtils.trimToEmpty(temp);
       }
 
@@ -157,12 +199,12 @@ public class ExecuteExpressionImpl extends AbstractExpression
       this.next = next;
    }
 
-   public String getTemplateName() {
-      return templateName;
+   public List<String> getTemplateNames() {
+      return templateNames;
    }
 
-   public void setTemplateName(String templateName) {
-      this.templateName = templateName;
+   public void setTemplateNames(List<String> templateNames) {
+      this.templateNames = templateNames;
    }
 
    public String getSignature() {
@@ -171,5 +213,13 @@ public class ExecuteExpressionImpl extends AbstractExpression
 
    public void setSignature(String signature) {
       this.signature = signature;
+   }
+
+   public List<Expression> getParams() {
+      return params;
+   }
+
+   public void setParams(List<Expression> params) {
+      this.params = params;
    }
 }

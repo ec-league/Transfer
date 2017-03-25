@@ -76,7 +76,12 @@ public class CastExpressionImpl extends AbstractExpression
     */
    @Override
    public String toJavaCode() {
-      return null;
+      StringBuilder sb = new StringBuilder(Operators.LEFT_BRACKET);
+      sb.append(getParamType().getParamType()).append(Operators.RIGHT_BRACKET);
+      if (getNext() == null)
+         return sb.append(" ").append(getParamType().getParamName()).toString();
+      else
+         return sb.append(" ").append(getNext().toJavaCode()).toString();
    }
 
    public ParamType getParamType() {
