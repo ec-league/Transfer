@@ -7,4 +7,5 @@ public class JavaKeyWord {
    public static final String SWITCH = "switch";
    public static final String CASE = "case";
    public static final String DEFAULT = "default";
+   public static final String WHILE = "while";
 }

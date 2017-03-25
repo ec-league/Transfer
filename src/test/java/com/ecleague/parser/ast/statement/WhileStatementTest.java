@@ -28,4 +28,16 @@ public class WhileStatementTest {
 
       Assert.assertNotNull(statement.getExpression());
    }
+
+   @Test
+   public void testToJavaCode() throws Exception {
+
+      String sourceCode = "while(x){ x == x|4 ;}";
+
+      WhileStatement statement = new WhileStatement();
+
+      Assert.assertEquals(statement.parse(sourceCode), "");
+
+      Assert.assertNotNull(statement.toJavaCode());
+   }
 }

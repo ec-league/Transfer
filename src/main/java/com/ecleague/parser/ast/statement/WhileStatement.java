@@ -5,6 +5,7 @@ import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.expression.Expression;
 import com.ecleague.parser.ast.expression.ExpressionImpl;
+import com.ecleague.parser.ast.java.JavaKeyWord;
 import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
@@ -48,6 +49,23 @@ public class WhileStatement extends BlockStatement implements Statement {
     */
    @Override
    public String toJavaCode() {
-      return null;
+
+      StringBuilder javaWhile = new StringBuilder(JavaKeyWord.WHILE);
+      javaWhile.append(Operators.LEFT_BRACKET);
+      javaWhile.append(getExpression().toJavaCode());
+      javaWhile.append(Operators.RIGHT_BRACKET);
+      javaWhile.append(Operators.LEFT_BRACE).append("\n");
+      if(getInnerStatements()!= null &&
+            !getInnerStatements().isEmpty()){
+         for(Statement statement : getInnerStatements()){
+            javaWhile.append(statement.toJavaCode());
+            javaWhile.append("\n");
+         }
+
+      }
+      javaWhile.append(Operators.RIGHT_BRACE);
+      System.out.println(javaWhile);
+
+      return javaWhile.toString();
    }
 }
