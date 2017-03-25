@@ -109,8 +109,6 @@ public class Clazz implements SourceParser {
          } else {
             throw new ParseSyntaxException(this, sourceCode);
          }
-
-
       } else {
          throw new ParseSyntaxException(this, sourceCode);
       }

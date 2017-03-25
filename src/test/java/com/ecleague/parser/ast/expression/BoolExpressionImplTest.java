@@ -54,6 +54,6 @@ public class BoolExpressionImplTest {
 
       Assert.assertEquals(expression.getParamType().getParamType(), "boolean");
 
-      Assert.assertEquals(expression.getParamType().getParamName(), "abc");
+      Assert.assertNotNull(expression.getExpression());
    }
 }

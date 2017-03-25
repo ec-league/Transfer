@@ -32,6 +32,7 @@ public class Operators {
     public static final String GT = ">";
     public static final String LT = "<";
     public static final String EQUAL = "==";
+    public static final String NOT_EQUAL = "!=";
     public static final String GT_EQ = ">=";
     public static final String LT_EQ = "<=";
 }

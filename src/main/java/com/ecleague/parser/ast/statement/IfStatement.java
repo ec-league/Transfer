@@ -53,7 +53,6 @@ public class IfStatement implements Statement {
 
       temp = Util.trimTarget(temp, KeyWord.IF);
       temp = Util.trimTarget(temp, Operators.LEFT_BRACKET);
-
       ifExpression = new ExpressionImpl();
       temp = ifExpression.parse(temp);
       temp = Util.trimTarget(temp, Operators.RIGHT_BRACKET);

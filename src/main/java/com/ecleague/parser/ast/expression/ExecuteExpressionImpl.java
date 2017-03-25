@@ -47,7 +47,7 @@ public class ExecuteExpressionImpl extends AbstractExpression
                return next.parse(temp);
             }
 
-            return Util.trimTarget(temp, Operators.RIGHT_BRACKET);
+            return temp;
          } else {
             temp = processParams(temp);
             temp = Util.trimTarget(temp, Operators.RIGHT_BRACKET);

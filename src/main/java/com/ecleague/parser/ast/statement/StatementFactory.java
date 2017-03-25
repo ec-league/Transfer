@@ -17,18 +17,21 @@ public class StatementFactory {
    private static final String FOREACH_STATEMENT = "^foreach *\\(.*";
    private static final String WHILE_STATEMENT = "^while *\\(.*";
    private static final String DECLARED_STATEMENT =
-         "^[A-Za-z][A-Za-z0-9]* *[A-Za-z0-9].*";
+         "^[A-Za-z][A-Za-z0-9]* +[A-Za-z0-9].*";
    private static final String USING_STATEMENT = "^using *";
    private static final String RETURN_STATEMENT = "^return *.*";
    private static final String SWITCH_CASE_STATEMENT = "^switch *\\(.*";
-   private static final String BREAK_STATEMENT = "^break!\\d";
-   private static final String CONTINUE_STATEMENT = "^continue!\\d";
+   private static final String BREAK_STATEMENT = "^break *;.*";
+   private static final String CONTINUE_STATEMENT = "^continue *;.*";
+   private static final String IF_STATEMENT = "^if *\\(.*";
 
    public static Statement getStatement(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
 
       if (temp.matches(FOR_STATEMENT)) {
          return new ForStatement();
+      } else if (temp.matches(IF_STATEMENT)) {
+         return new IfStatement();
       } else if (temp.matches(RETURN_STATEMENT)) {
          return new ReturnStatement();
       } else if (temp.matches(BREAK_STATEMENT)) {

@@ -14,6 +14,7 @@ public class BoolExpressionImpl extends TypeExpressionImpl
       implements Expression {
 
    private boolean not;
+   private Expression expression;
 
    public BoolExpressionImpl() {
       getParamType().setParamType("boolean");
@@ -30,9 +31,10 @@ public class BoolExpressionImpl extends TypeExpressionImpl
          getParamType().setParamName("false");
          return Util.trimTarget(temp, getParamType().getParamName());
       } else if (temp.startsWith(Operators.NOT)) {
-         not = true;
+         setNot(true);
          temp = Util.trimTarget(temp, Operators.NOT);
-         return parse(temp);
+         setExpression(new ExpressionImpl());
+         return getExpression().parse(temp);
       } else {
          return super.parse(sourceCode);
       }
@@ -51,5 +53,21 @@ public class BoolExpressionImpl extends TypeExpressionImpl
    @Override
    public String getExpressionType() {
       return KeyWord.BOOL;
+   }
+
+   public boolean isNot() {
+      return not;
+   }
+
+   public void setNot(boolean not) {
+      this.not = not;
+   }
+
+   public Expression getExpression() {
+      return expression;
+   }
+
+   public void setExpression(Expression expression) {
+      this.expression = expression;
    }
 }

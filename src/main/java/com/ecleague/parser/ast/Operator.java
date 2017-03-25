@@ -33,6 +33,7 @@ public class Operator implements SourceParser {
       CALCULATE_OPERATORS.add(Operators.LT_EQ);
       CALCULATE_OPERATORS.add(Operators.GT_EQ);
       CALCULATE_OPERATORS.add(Operators.ASSIGN);
+      CALCULATE_OPERATORS.add(Operators.NOT_EQUAL);
    }
 
    /**
@@ -112,6 +113,11 @@ public class Operator implements SourceParser {
          break;
       case Operators.RIGHT_BRACKET:
          operator = "";
+         break;
+      case Operators.NOT:
+         if (operatorStr.length() > 1
+               && operatorStr.substring(0, 2).equals(Operators.NOT_EQUAL))
+            operator = Operators.NOT_EQUAL;
          break;
       }
    }

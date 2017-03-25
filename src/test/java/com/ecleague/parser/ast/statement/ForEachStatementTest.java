@@ -1,5 +1,6 @@
 package com.ecleague.parser.ast.statement;
 
+import com.ecleague.parser.ast.util.PreFormat;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,5 +34,23 @@ public class ForEachStatementTest {
       Assert.assertEquals(statement.parse(sourceCode), "");
 
       Assert.assertEquals(statement.getIter().getParamName(), "model");
+   }
+
+   @Test
+   public void testParseComplex() {
+      String sourceCode = " foreach (var upgradeProduct in entry.Value)\n" +
+            "                {\n" +
+            "                    if (!IsProductMatch(upgradeProduct, entity))\n" +
+            "                        continue;\n" +
+            "\n" +
+            "                    result.Add(upgradeProduct);\n" +
+            "                    break;\n" +
+            "                }";
+
+      sourceCode = PreFormat.removeUnusedInfo(sourceCode);
+
+      ForEachStatement statement = new ForEachStatement();
+
+      Assert.assertEquals(statement.parse(sourceCode), "");
    }
 }

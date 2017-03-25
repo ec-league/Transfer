@@ -13,15 +13,7 @@ import java.util.regex.Pattern;
  */
 public class PreFormat {
 
-   private static final List<String> acessList = new ArrayList<>();
-   static {
-      acessList.add("private");
-      acessList.add("protected");
-      acessList.add("public");
-   }
-
-   public static Boolean formatOriginFlie(String source)
-         throws PreFormatException {
+   public static String removeUnusedInfo(String source) {
 
       //去掉单行三个注释
       Pattern pattern = Pattern.compile("///((.*?))\n");
@@ -32,8 +24,6 @@ public class PreFormat {
          source = matcher.replaceAll("");
       }
 
-      System.out.println("step0:" + source + "\n");
-
       //去掉多行注释
       pattern = Pattern.compile("/\\*(.|[\\r\\n])*?\\*/");
       matcher = pattern.matcher(source);
@@ -42,7 +32,6 @@ public class PreFormat {
          source = matcher.replaceAll("");
 
       }
-      System.out.println("step1:" + source + "\n");
 
       //去掉单行注释
       pattern = Pattern.compile("^ *.*//.*$\\n");
@@ -51,9 +40,7 @@ public class PreFormat {
       while (matcher.find()) {
          matcher.group();
          source = matcher.replaceAll("");
-
       }
-      System.out.println("step2:" + source + "\n");
 
       //去掉region
       pattern = Pattern.compile("#region((.*?))\n");
@@ -75,10 +62,12 @@ public class PreFormat {
 
          int braceStart = source.indexOf(Operators.LEFT_BRACE, matchEnd);
          int braceEnd = -1;
-         int firstRightBrace = source.indexOf(Operators.RIGHT_BRACE, braceStart);
+         int firstRightBrace =
+               source.indexOf(Operators.RIGHT_BRACE, braceStart);
 
-         Boolean hasOtherBrace = source.substring(braceStart, firstRightBrace).contains(Operators.LEFT_BRACE);
-         if(hasOtherBrace){
+         Boolean hasOtherBrace = source.substring(braceStart, firstRightBrace)
+               .contains(Operators.LEFT_BRACE);
+         if (hasOtherBrace) {
             braceEnd = getBraceEndIndex(source, braceStart);
          }
 
@@ -89,75 +78,29 @@ public class PreFormat {
          source = sourceBuilder.toString();
       }
 
-      System.out.println("step3:" + source + "\n");
       //把所有的回车替换为空格
       source = source.replaceAll("[\\t|\\r|\\n]", " ");
 
-
-
-//      //遇到";"换行
-//      source = source.replaceAll("[;]", ";\n");
-//      System.out.println("step6:" + source + "\n");
-//
-//      //遇到"{"和"}"就换行
-//      source = source.replaceAll("[{]", "\n{\n");
-//      source = source.replaceAll("[}]", "\n}\n");
-
-      return true;
-
-
+      return source;
    }
 
    private static int getBraceEndIndex(String source, int braceStart) {
       int braceEnd = -1;
       int braceLeftCount = 1;
       int braceRightCount = 0;
-      for (int index = braceStart + 2; source
-              .charAt(index) < source.length(); index++) {
+      for (int index = braceStart + 2; source.charAt(index) < source
+            .length(); index++) {
          if (source.charAt(index) != '}' && source.charAt(index) != '{') {
             continue;
          } else if (source.charAt(index) == '{') {
             braceLeftCount++;
          } else if (source.charAt(index) == '}') {
             braceRightCount++;
-            if(braceLeftCount == braceRightCount - 1){
+            if (braceLeftCount == braceRightCount - 1) {
                braceEnd = index;
             }
          }
       }
       return braceEnd;
-   }
-
-   private static int getInsertIndex(StringBuilder source, String matchStr,
-         int begin) {
-      int ifIndex = source.indexOf(matchStr, begin);
-
-      if (ifIndex == -1) {
-         return -1;
-      }
-      int firstSemicolonAfterIf = source.indexOf(";", ifIndex);
-
-      Boolean isIfHasBrace =
-            source.substring(ifIndex, firstSemicolonAfterIf).contains("{");
-      //没接括号的，就应该在最后一个反括号之后换行
-      if (isIfHasBrace == false) {
-         int preBraceCount = 1;
-         int backBraceCount = 0;
-         //从if后面开始匹配
-         for (int index = ifIndex + 2; source
-               .charAt(index) < firstSemicolonAfterIf; index++) {
-            if (source.charAt(index) != ')') {
-               continue;
-            } else if (source.charAt(index) == '(') {
-               preBraceCount++;
-            } else if (source.charAt(index) == ')'
-                  && backBraceCount == preBraceCount - 1) {
-
-               return index;
-            }
-
-         }
-      }
-      return -1;
    }
 }
