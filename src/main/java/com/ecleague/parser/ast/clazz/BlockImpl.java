@@ -35,18 +35,21 @@ public class BlockImpl implements Block {
       String tempSourceCode = processSignature(temp);
 
       if (tempSourceCode.startsWith(Operators.LEFT_BRACKET)) {
-         // function
-         setSubBlock(new FunctionBlock());
+         FunctionBlock block = new FunctionBlock();
+         setSubBlock(block);
          temp = getSubBlock().parse(temp);
-
+         block.setReturnType(getType());
          return temp;
       } else if (tempSourceCode.startsWith(Operators.LEFT_BRACE)) {
-         // property
-         setSubBlock(new PropertyBlock());
-         return getSubBlock().parse(temp);
+         PropertyBlock block = new PropertyBlock();
+         setSubBlock(block);
+         temp = getSubBlock().parse(temp);
+         block.setReturnType(getType());
+         return temp;
       } else if (tempSourceCode.startsWith(Operators.ASSIGN) || tempSourceCode.startsWith(Operators.SEMICOLON)) {
-         // field with initialization
-         setSubBlock(new FiledBlock());
+         FieldBlock block = new FieldBlock();
+         setSubBlock(block);
+         block.setReturnType(getType());
          return getSubBlock().parse(temp);
       } else {
          throw new ParseSyntaxException(this, sourceCode);

@@ -18,7 +18,7 @@ public class BlockImplTest {
     * Method: parse(String sourceCode)
     */
    @Test
-   public void testParse() throws Exception {
+   public void testParseFunction() throws Exception {
 //TODO: Test goes here...
       String sourceCode = "public bool TryGetUpgradeProductById(long id, out UpgradeProduct product)" +
             "        {" +
@@ -42,5 +42,28 @@ public class BlockImplTest {
       Assert.assertEquals(block1.getParamTypeList().size(), 2);
 
       Assert.assertTrue(block1.getParamTypeList().get(1).isOut());
+      Assert.assertEquals(block1.getReturnType(), "bool");
+   }
+
+   @Test
+   public void testParseField(){
+
+      String sourceCode = "private static readonly IAgentCache AgentCache = CacheFactory.GetCache();";
+
+      BlockImpl block = new BlockImpl();
+
+      Assert.assertEquals(block.parse(sourceCode), "");
+
+      Assert.assertEquals(block.getQualifier(), "private");
+      Assert.assertTrue(block.isStaticBlock());
+      Assert.assertTrue(block.isReadonlyBlock());
+
+      Assert.assertEquals(block.getType(), "IAgentCache");
+
+      FieldBlock block1 = (FieldBlock) block.getSubBlock();
+
+      Assert.assertEquals(block1.getFiledName(), "AgentCache");
+      Assert.assertEquals(block1.getReturnType(), "IAgentCache");
+      Assert.assertNotNull(block1.getInitValue());
    }
 }
