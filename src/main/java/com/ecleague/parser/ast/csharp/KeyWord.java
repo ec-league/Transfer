@@ -47,6 +47,7 @@ public class KeyWord {
    public static final String PRIVATE = "private";
    public static final String PROTECTED = "protected";
    public static final String PUBLIC = "public";
+   public static final String PARTIAL = "partial";
    public static final String READONLY = "readonly";
    public static final String REF = "ref";
    public static final String RETURN = "return";
