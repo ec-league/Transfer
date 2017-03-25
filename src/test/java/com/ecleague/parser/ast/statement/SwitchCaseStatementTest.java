@@ -29,4 +29,26 @@ public class SwitchCaseStatementTest {
         Assert.assertNotNull(statement.getExpression());
     }
 
+    @Test
+    public void testToJavaCode() throws Exception {
+
+        String sourceCode = "switch (s){" +
+              "            case 1:" +
+              "                " +
+              "                return;" +
+              "            case 2:" +
+              "                " +
+              "                return;" +
+              "                default:" +
+              "                    return;" +
+              "        }";
+
+
+        SwitchCaseStatement statement = new SwitchCaseStatement();
+
+        Assert.assertEquals(statement.parse(sourceCode), "");
+
+        Assert.assertNotNull(statement.toJavaCode());
+    }
+
 }

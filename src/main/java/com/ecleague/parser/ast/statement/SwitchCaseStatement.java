@@ -5,6 +5,7 @@ import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
 import com.ecleague.parser.ast.expression.Expression;
 import com.ecleague.parser.ast.expression.ExpressionImpl;
+import com.ecleague.parser.ast.java.JavaKeyWord;
 import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
@@ -47,22 +48,29 @@ public class SwitchCaseStatement implements Statement {
             Expression expression = new ExpressionImpl();
             temp = Util.trimTarget(temp, KeyWord.CASE);
             temp = expression.parse(temp);
+            caseBlock.setExpression(expression);
             temp = Util.trimTarget(temp, Operators.COLON);
-            if(!temp.startsWith(KeyWord.CASE)){
-                List<Statement> statementList = new ArrayList<>();
-                temp = StatementFactory.processBlock(temp, statementList);
+            if(temp.startsWith(KeyWord.CASE)){
+                caseBlockList.add(caseBlock);
+                continue;
             }
             else{
-                caseBlock.setExpression(expression);
+                List<Statement> statementList = new ArrayList<>();
+                temp = StatementFactory.processInnerBlock(temp, statementList);
+                caseBlock.setStatementList(statementList);
                 caseBlockList.add(caseBlock);
             }
         }
 
         if(temp.startsWith(KeyWord.DEFAULT)){
+            CaseBlock caseBlock = new CaseBlock();
+
             temp = Util.trimTarget(temp, KeyWord.DEFAULT);
             temp = Util.trimTarget(temp, Operators.COLON);
             List<Statement> statementList = new ArrayList<>();
             temp = StatementFactory.processBlock(temp, statementList);
+            caseBlock.setStatementList(statementList);
+            caseBlockList.add(caseBlock);
         }
 
         return Util.trimTarget(temp, Operators.RIGHT_BRACE);
@@ -76,7 +84,38 @@ public class SwitchCaseStatement implements Statement {
      */
     @Override
     public String toJavaCode() {
-        return null;
+        StringBuilder javaSwitch = new StringBuilder(JavaKeyWord.SWITCH);
+        javaSwitch.append(Operators.LEFT_BRACKET);
+        javaSwitch.append(getExpression().toJavaCode());
+        javaSwitch.append(Operators.RIGHT_BRACKET);
+        javaSwitch.append(Operators.LEFT_BRACE).append("\n");
+        for(CaseBlock caseBlock : caseBlockList){
+            if(caseBlock.getExpression() == null){
+                javaSwitch.append(JavaKeyWord.DEFAULT);
+                javaSwitch.append(Operators.COLON);
+                javaSwitch.append("\n");
+            }
+            else{
+                javaSwitch.append(JavaKeyWord.CASE);
+                javaSwitch.append(" ");
+                javaSwitch.append(caseBlock.getExpression().toJavaCode());
+                javaSwitch.append(Operators.COLON);
+                javaSwitch.append("\n");
+            }
+            if(caseBlock.getStatementList()!= null &&
+                  !caseBlock.getStatementList().isEmpty()){
+                for(Statement statement : caseBlock.getStatementList()){
+                    javaSwitch.append(statement.toJavaCode());
+                    javaSwitch.append("\n");
+                }
+
+            }
+
+
+        }
+        javaSwitch.append(Operators.RIGHT_BRACE);
+        System.out.println(javaSwitch);
+        return javaSwitch.toString();
     }
 
 
