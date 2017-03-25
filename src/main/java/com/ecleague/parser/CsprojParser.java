@@ -1,8 +1,8 @@
 package com.ecleague.parser;
 
-import java.io.File;
-
 import com.ecleague.parser.domain.impl.CsConfigurationImpl;
+
+import java.io.File;
 
 /**
  * Author: EthanPark <br/>

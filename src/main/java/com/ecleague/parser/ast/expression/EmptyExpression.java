@@ -6,7 +6,7 @@ package com.ecleague.parser.ast.expression;
  */
 public class EmptyExpression extends AbstractExpression {
    @Override
-   public ExpressionType getExpressionType() {
+   public String getExpressionType() {
       return null;
    }
 

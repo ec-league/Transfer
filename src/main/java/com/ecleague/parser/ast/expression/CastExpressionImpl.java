@@ -3,10 +3,8 @@ package com.ecleague.parser.ast.expression;
 import com.ecleague.parser.ast.ParamType;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
-import com.ecleague.parser.ast.function.Function;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
-import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.regex.Matcher;
@@ -20,11 +18,22 @@ public class CastExpressionImpl extends AbstractExpression
       implements Expression {
    private ParamType paramType;
 
-   private Function function;
+   private ExecuteExpressionImpl next;
+
+   public ExecuteExpressionImpl getNext() {
+      return next;
+   }
+
+   public void setNext(ExecuteExpressionImpl next) {
+      this.next = next;
+   }
 
    @Override
-   public ExpressionType getExpressionType() {
-      return null;
+   public String getExpressionType() {
+      if (getNext() == null)
+         return getParamType().getParamType();
+
+      return getNext().getExpressionType();
    }
 
    @Override
@@ -45,7 +54,9 @@ public class CastExpressionImpl extends AbstractExpression
 
             if (temp.startsWith(".")) {
                // Force cast support function calls.
-               throw new NotImplementedException();
+               temp = Util.trimTarget(temp, ".");
+               setNext(new ExecuteExpressionImpl());
+               return getNext().parse(temp);
             } else {
                return temp;
             }
@@ -73,13 +84,5 @@ public class CastExpressionImpl extends AbstractExpression
 
    public void setParamType(ParamType paramType) {
       this.paramType = paramType;
-   }
-
-   public Function getFunction() {
-      return function;
-   }
-
-   public void setFunction(Function function) {
-      this.function = function;
    }
 }

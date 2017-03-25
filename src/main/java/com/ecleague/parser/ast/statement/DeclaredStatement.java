@@ -1,10 +1,5 @@
 package com.ecleague.parser.ast.statement;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.ecleague.parser.ast.Operator;
 import com.ecleague.parser.ast.ParamType;
 import com.ecleague.parser.ast.SourceParser;
@@ -15,6 +10,10 @@ import com.ecleague.parser.ast.expression.Expression;
 import com.ecleague.parser.ast.expression.ExpressionImpl;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Author: EthanPark <br/>

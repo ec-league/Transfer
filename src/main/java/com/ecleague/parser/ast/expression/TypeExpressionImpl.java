@@ -1,13 +1,12 @@
 package com.ecleague.parser.ast.expression;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.ecleague.parser.ast.ParamType;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author EthanPark <br/>
@@ -56,8 +55,10 @@ public class TypeExpressionImpl extends AbstractExpression
    }
 
    @Override
-   public ExpressionType getExpressionType() {
-      return ExpressionType.OBJECT;
+   public String getExpressionType() {
+      if (getNext() == null)
+         return getParamType().getParamType();
+      return getNext().getExpressionType();
    }
 
    public ParamType getParamType() {

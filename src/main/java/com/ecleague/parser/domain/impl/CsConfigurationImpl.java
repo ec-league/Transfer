@@ -1,12 +1,12 @@
 package com.ecleague.parser.domain.impl;
 
-import java.io.File;
-import java.util.*;
-
 import com.ecleague.parser.domain.CsConfiguration;
 import com.ecleague.parser.domain.CsProject;
 import com.ecleague.parser.domain.CsSourceFile;
 import com.ecleague.parser.exception.ParseCsprojException;
+
+import java.io.File;
+import java.util.*;
 
 /**
  * Author: EthanPark <br/>

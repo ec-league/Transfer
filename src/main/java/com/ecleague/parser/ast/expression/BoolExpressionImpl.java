@@ -1,10 +1,9 @@
 package com.ecleague.parser.ast.expression;
 
-import org.apache.commons.lang.StringUtils;
-
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.util.Util;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Author: EthanPark <br/>
@@ -50,7 +49,7 @@ public class BoolExpressionImpl extends TypeExpressionImpl
    }
 
    @Override
-   public ExpressionType getExpressionType() {
-      return ExpressionType.BOOL;
+   public String getExpressionType() {
+      return KeyWord.BOOL;
    }
 }

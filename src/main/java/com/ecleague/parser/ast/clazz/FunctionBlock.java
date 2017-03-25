@@ -1,6 +1,5 @@
 package com.ecleague.parser.ast.clazz;
 
-import com.ecleague.parser.ast.Operator;
 import com.ecleague.parser.ast.ParamType;
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;

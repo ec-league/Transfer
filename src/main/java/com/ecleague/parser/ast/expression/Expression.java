@@ -12,7 +12,7 @@ public interface Expression extends SourceParser {
     * 
     * @return
     */
-   ExpressionType getExpressionType();
+   String getExpressionType();
 
    String getRef();
 

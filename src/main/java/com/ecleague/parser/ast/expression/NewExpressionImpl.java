@@ -1,9 +1,9 @@
 package com.ecleague.parser.ast.expression;
 
+import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
-import com.ecleague.parser.ast.function.ConstructorFunction;
-import com.ecleague.parser.ast.function.Function;
 import com.ecleague.parser.ast.util.Regex;
+import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.regex.Pattern;
@@ -14,31 +14,23 @@ import java.util.regex.Pattern;
  */
 public class NewExpressionImpl extends AbstractExpression
       implements Expression {
-   private Function function;
-   private ExecuteExpressionImpl executeExpression;
+   private ExecuteExpressionImpl next;
 
    @Override
-   public ExpressionType getExpressionType() {
-      return ExpressionType.OBJECT;
+   public String getExpressionType() {
+      return getNext().getExpressionType();
    }
 
    @Override
    public String parse(String sourceCode) {
 
-      String temp = StringUtils.trimToEmpty(sourceCode.substring(3));
+      String temp = StringUtils.trimToEmpty(sourceCode);
+      temp = Util.trimTarget(temp, KeyWord.NEW);
 
       if ((Pattern.compile(Regex.PARAM).matcher(temp)).find()) {
-         function = new ConstructorFunction();
-         temp = function.parse(temp);
+         setNext(new ExecuteExpressionImpl());
 
-         temp = StringUtils.trimToEmpty(temp);
-
-         if (temp.startsWith(".")) {
-            executeExpression = new ExecuteExpressionImpl();
-            return executeExpression.parse(temp);
-         }
-
-         return temp;
+         return getNext().parse(temp);
       } else {
          throw new ParseSyntaxException(this, sourceCode);
       }
@@ -52,5 +44,13 @@ public class NewExpressionImpl extends AbstractExpression
    @Override
    public String toJavaCode() {
       return null;
+   }
+
+   public ExecuteExpressionImpl getNext() {
+      return next;
+   }
+
+   public void setNext(ExecuteExpressionImpl next) {
+      this.next = next;
    }
 }

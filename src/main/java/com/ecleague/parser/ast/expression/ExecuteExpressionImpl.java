@@ -3,7 +3,6 @@ package com.ecleague.parser.ast.expression;
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
-import com.ecleague.parser.ast.function.Function;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
@@ -18,11 +17,10 @@ import java.util.regex.Pattern;
 public class ExecuteExpressionImpl extends AbstractExpression
       implements Expression {
 
-   private Function function;
    private ExecuteExpressionImpl next;
 
    @Override
-   public ExpressionType getExpressionType() {
+   public String getExpressionType() {
       return null;
    }
 
@@ -35,9 +33,6 @@ public class ExecuteExpressionImpl extends AbstractExpression
             .find()) {
          String s = matcher.group();
          s = s.substring(0, s.length() - 1);
-
-         function = new Function();
-         function.setFunctionName(s);
 
          temp = Util.trimTarget(temp, s);
 
@@ -68,8 +63,6 @@ public class ExecuteExpressionImpl extends AbstractExpression
          String s = matcher.group();
          s = s.substring(0, s.length() - 1);
 
-         function = new Function();
-         function.setFunctionName(s);
          temp = Util.trimTarget(temp, s);
          temp = Util.trimTarget(temp, ".");
          next = new ExecuteExpressionImpl();
@@ -78,8 +71,6 @@ public class ExecuteExpressionImpl extends AbstractExpression
             .find()) {
          String s = matcher.group();
 
-         function = new Function();
-         function.setFunctionName(s);
          temp = Util.trimTarget(temp, s);
          return temp;
       } else {
@@ -119,7 +110,6 @@ public class ExecuteExpressionImpl extends AbstractExpression
 
       if (Pattern.compile(Regex.VARIABLE).matcher(temp).find()) {
          temp = e.parse(temp);
-         function.addExpression(e);
          temp = StringUtils.trimToEmpty(temp);
       } else {
          throw new ParseSyntaxException(this, sourceCode);
@@ -141,19 +131,10 @@ public class ExecuteExpressionImpl extends AbstractExpression
          }
 
          temp = e.parse(temp);
-         function.addExpression(e);
          temp = StringUtils.trimToEmpty(temp);
       }
 
       return temp;
-   }
-
-   public Function getFunction() {
-      return function;
-   }
-
-   public void setFunction(Function function) {
-      this.function = function;
    }
 
    public ExecuteExpressionImpl getNext() {

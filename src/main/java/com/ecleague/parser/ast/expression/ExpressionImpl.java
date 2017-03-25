@@ -83,7 +83,7 @@ public class ExpressionImpl extends AbstractExpression implements Expression {
    }
 
    @Override
-   public ExpressionType getExpressionType() {
+   public String getExpressionType() {
       return getLeft().getExpressionType();
    }
 }

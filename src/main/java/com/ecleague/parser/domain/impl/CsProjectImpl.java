@@ -1,16 +1,15 @@
 package com.ecleague.parser.domain.impl;
 
-import java.io.File;
-import java.util.*;
-
+import com.ecleague.parser.domain.CsProject;
+import com.ecleague.parser.domain.CsSourceFile;
+import com.ecleague.parser.exception.ParseCsprojException;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import com.ecleague.parser.domain.CsProject;
-import com.ecleague.parser.domain.CsSourceFile;
-import com.ecleague.parser.exception.ParseCsprojException;
+import java.io.File;
+import java.util.*;
 
 /**
  * Author: EthanPark <br/>

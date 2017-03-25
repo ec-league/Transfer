@@ -3,7 +3,6 @@ package com.ecleague.parser.ast.clazz;
 import com.ecleague.parser.ast.SourceParser;
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
-import com.ecleague.parser.ast.function.Function;
 import com.ecleague.parser.ast.statement.Statement;
 import com.ecleague.parser.ast.statement.UsingStatement;
 import com.ecleague.parser.ast.util.Util;
@@ -18,7 +17,6 @@ import java.util.List;
  * Email: byp5303628@hotmail.com
  */
 public class Clazz implements SourceParser {
-   private List<Function> functions;
    private List<String> namespaceList;
    private List<Statement> statementList;
 
@@ -48,21 +46,21 @@ public class Clazz implements SourceParser {
       String temp = StringUtils.trimToEmpty(sourceCode);
       UsingStatement statement;
       statementList = new ArrayList<>();
-      while(temp.startsWith(KeyWord.USING)){
+      while (temp.startsWith(KeyWord.USING)) {
          statement = new UsingStatement();
          temp = statement.parse(temp);
          statementList.add(statement);
       }
 
       //handle namespace
-      if(temp.startsWith(KeyWord.NAMESPACE)){
+      if (temp.startsWith(KeyWord.NAMESPACE)) {
 
          int beginOfNamespace = temp.indexOf(KeyWord.NAMESPACE);
          int endOfNamespace = temp.indexOf(Operators.LEFT_BRACE);
          temp = Util.trimTarget(temp, KeyWord.NAMESPACE);
          String namespace = temp.substring(beginOfNamespace, endOfNamespace);
          String[] namespaceArray = namespace.split(".");
-         for(String name : namespaceArray){
+         for (String name : namespaceArray) {
             namespaceList.add(name);
          }
          StringBuilder strBuilder = new StringBuilder(temp);
