@@ -10,15 +10,15 @@ public class SwitchCaseStatementTest {
     @Test
     public void testPreProcess() throws Exception {
 
-        String sourceCode = "switch (s){\n" +
-                "            case 1:\n" +
-                "                \n" +
-                "                return;\n" +
-                "            case 2:\n" +
-                "                \n" +
-                "                return;\n" +
-                "                default:\n" +
-                "                    return;\n" +
+        String sourceCode = "switch (s){" +
+                "            case 1:" +
+                "                " +
+                "                return;" +
+                "            case 2:" +
+                "                " +
+                "                return;" +
+                "                default:" +
+                "                    return;" +
                 "        }";
 
 

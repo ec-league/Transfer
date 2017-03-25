@@ -65,7 +65,7 @@ public class SwitchCaseStatement implements Statement {
             temp = StatementFactory.processBlock(temp, statementList);
         }
 
-        return Util.trimTarget(temp, Operators.RIGHT_BRACKET);
+        return Util.trimTarget(temp, Operators.RIGHT_BRACE);
 
     }
 
