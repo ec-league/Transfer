@@ -68,16 +68,16 @@ public class IfStatement implements Statement {
          }
          elseIfTemp = Util.trimTarget(elseIfTemp, KeyWord.IF);
 
-         IfStatement elseIfstatement = new IfStatement();
+         IfStatement elseIfStatement = new IfStatement();
          Expression elseIfExpression = new ExpressionImpl();
          elseIfTemp = Util.trimTarget(elseIfTemp, Operators.LEFT_BRACKET);
          elseIfTemp = elseIfExpression.parse(elseIfTemp);
          elseIfTemp = Util.trimTarget(elseIfTemp, Operators.RIGHT_BRACKET);
-         elseIfstatement.setIfExpression(elseIfExpression);
+         elseIfStatement.setIfExpression(elseIfExpression);
 
-         elseIfstatement.setStatements(new ArrayList<Statement>());
+         elseIfStatement.setStatements(new ArrayList<Statement>());
          elseIfTemp = StatementFactory.processInnerBlock(elseIfTemp,
-               elseIfstatement.getStatements());
+               elseIfStatement.getStatements());
          temp = elseIfTemp;
       }
 
