@@ -42,6 +42,7 @@ public class BlockImpl implements Block {
          return temp;
       } else if (tempSourceCode.startsWith(Operators.LEFT_BRACE)) {
          PropertyBlock block = new PropertyBlock();
+         block.setParent(this);
          setSubBlock(block);
          temp = getSubBlock().parse(temp);
          block.setReturnType(getType());

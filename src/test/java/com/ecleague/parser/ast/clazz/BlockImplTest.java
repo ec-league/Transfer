@@ -66,4 +66,41 @@ public class BlockImplTest {
       Assert.assertEquals(block1.getReturnType(), "IAgentCache");
       Assert.assertNotNull(block1.getInitValue());
    }
+
+   @Test
+   public void testParseProperty(){
+      String sourceCode = "public Abc Abc {get;set;}";
+
+      BlockImpl block = new BlockImpl();
+
+      Assert.assertEquals(block.parse(sourceCode), "");
+
+      Assert.assertTrue(block.getSubBlock() instanceof PropertyBlock);
+
+      PropertyBlock propertyBlock = (PropertyBlock) block.getSubBlock();
+
+      Assert.assertEquals(propertyBlock.getPropertyName(), "Abc");
+      Assert.assertEquals(propertyBlock.getReturnType(), "Abc");
+
+      Assert.assertEquals(propertyBlock.getGetQualifier(), "public");
+      Assert.assertEquals(propertyBlock.getSetQualifier(), "public");
+
+      sourceCode = "public int Abc {get {return 5;} protected set;}";
+
+      block = new BlockImpl();
+
+      Assert.assertEquals(block.parse(sourceCode), "");
+
+      Assert.assertTrue(block.getSubBlock() instanceof PropertyBlock);
+
+      propertyBlock = (PropertyBlock) block.getSubBlock();
+
+      Assert.assertEquals(propertyBlock.getPropertyName(), "Abc");
+      Assert.assertEquals(propertyBlock.getReturnType(), "int");
+
+      Assert.assertEquals(propertyBlock.getGetQualifier(), "public");
+      Assert.assertEquals(propertyBlock.getSetQualifier(), "protected");
+
+      Assert.assertEquals(propertyBlock.getGetStatements().size(), 1);
+   }
 }
