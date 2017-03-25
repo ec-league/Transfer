@@ -15,5 +15,5 @@ public class Regex {
    public static final String VARIABLE =
          "^[[_A-Za-z][A-Za-z0-9_]*|[0-9]+[fFlLmM]{0,1}]";
    public static final String PARAM_VARIABLE =
-         "^[_A-Za-z][A-Za-z0-9_]* *[_A-Za-z][_A-Za-z0-9]*";
+         "^[_A-Za-z][A-Za-z0-9_]* +[_A-Za-z][_A-Za-z0-9]*";
 }

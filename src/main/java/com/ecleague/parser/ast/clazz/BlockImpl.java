@@ -1,18 +1,12 @@
 package com.ecleague.parser.ast.clazz;
 
-import com.ecleague.parser.ast.Operator;
-import com.ecleague.parser.ast.ParamType;
 import com.ecleague.parser.ast.csharp.KeyWord;
 import com.ecleague.parser.ast.csharp.Operators;
 import com.ecleague.parser.ast.exception.ParseSyntaxException;
-import com.ecleague.parser.ast.expression.Expression;
-import com.ecleague.parser.ast.expression.ExpressionImpl;
 import com.ecleague.parser.ast.util.Regex;
 import com.ecleague.parser.ast.util.Util;
 import org.apache.commons.lang.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,10 +21,8 @@ public class BlockImpl implements Block {
    private boolean constBlock;
    private String qualifier;
    private String type;
-   private String signature;
 
-   private List<ParamType> paramTypeList;
-   private Expression initValue;
+   private Block subBlock;
 
    @Override
    public String parse(String sourceCode) {
@@ -40,65 +32,34 @@ public class BlockImpl implements Block {
 
       temp = processType(temp);
 
-      temp = processSignature(temp);
+      String tempSourceCode = processSignature(temp);
 
-      if (temp.startsWith(Operators.LEFT_BRACKET)) {
+      if (tempSourceCode.startsWith(Operators.LEFT_BRACKET)) {
          // function
-         temp = Util.trimTarget(temp, Operators.LEFT_BRACKET);
+         setSubBlock(new FunctionBlock());
+         temp = getSubBlock().parse(temp);
 
-         if (!temp.startsWith(Operators.RIGHT_BRACKET)) {
-            temp = processParams(temp);
-         }
-         temp = Util.trimTarget(temp, Operators.RIGHT_BRACKET);
-      } else if (temp.startsWith(Operators.LEFT_BRACE)) {
+         return temp;
+      } else if (tempSourceCode.startsWith(Operators.LEFT_BRACE)) {
          // property
-      } else if (temp.startsWith(Operators.ASSIGN)) {
+         setSubBlock(new PropertyBlock());
+         return getSubBlock().parse(temp);
+      } else if (tempSourceCode.startsWith(Operators.ASSIGN) || tempSourceCode.startsWith(Operators.SEMICOLON)) {
          // field with initialization
-         temp = Util.trimTarget(temp, Operators.ASSIGN);
-         initValue = new ExpressionImpl();
-         temp = initValue.parse(temp);
-      } else if (temp.startsWith(Operators.SEMICOLON)) {
-         // field without initialization
-         temp = Util.trimTarget(temp, Operators.SEMICOLON);
+         setSubBlock(new FiledBlock());
+         return getSubBlock().parse(temp);
       } else {
          throw new ParseSyntaxException(this, sourceCode);
       }
-
-      return temp;
    }
 
-   private String processParams(String sourceCode) {
-      String temp = StringUtils.trimToEmpty(sourceCode);
-
-      paramTypeList = new ArrayList<>();
-
-      while (!temp.startsWith(Operators.COMMA)) {
-         ParamType paramType = new ParamType();
-
-         if (temp.startsWith(KeyWord.OUT)) {
-            paramType.setOut(true);
-            temp = Util.trimTarget(temp, KeyWord.OUT);
-         }
-
-         if (temp.startsWith(KeyWord.REF)) {
-            paramType.setRef(true);
-            temp = Util.trimTarget(temp, KeyWord.REF);
-         }
-
-         temp = paramType.parse(temp);
-         paramTypeList.add(paramType);
-         temp = StringUtils.trimToEmpty(temp);
-      }
-
-      return temp;
-   }
 
    private String processSignature(String sourceCode) {
       String temp = StringUtils.trimToEmpty(sourceCode);
       Matcher matcher;
       if ((matcher = Pattern.compile(Regex.PARAM).matcher(temp)).find()) {
-         setType(matcher.group());
-         return Util.trimTarget(temp, getType());
+         String sig = matcher.group();
+         return Util.trimTarget(temp, sig);
       }
       throw new ParseSyntaxException(this, sourceCode);
    }
@@ -179,14 +140,6 @@ public class BlockImpl implements Block {
       this.type = type;
    }
 
-   public String getSignature() {
-      return signature;
-   }
-
-   public void setSignature(String signature) {
-      this.signature = signature;
-   }
-
    public String getQualifier() {
       return qualifier;
    }
@@ -201,5 +154,13 @@ public class BlockImpl implements Block {
 
    public void setConstBlock(boolean constBlock) {
       this.constBlock = constBlock;
+   }
+
+   public Block getSubBlock() {
+      return subBlock;
+   }
+
+   public void setSubBlock(Block subBlock) {
+      this.subBlock = subBlock;
    }
 }
