@@ -5,15 +5,13 @@ import org.junit.Test;
 
 /**
  * ExpressionImpl Tester.
- * 
+ *
  * @author EthanPark
  * @version 1.0
  */
 public class ExpressionImplTest {
    /**
-    * 
     * Method: parse(String sourceCode)
-    * 
     */
    @Test
    public void testParse() throws Exception {
@@ -64,11 +62,27 @@ public class ExpressionImplTest {
    }
 
    @Test
-   public void testParseComplex2(){
+   public void testParseComplex2() {
       String sourceCode = "AgentCache.IsOwnAgency(agentId);";
 
       Expression expression = new ExpressionImpl();
 
       Assert.assertEquals(expression.parse(sourceCode), "");
+   }
+
+   @Test
+   public void testAssignExpression() {
+      String sourceCode = "b = 9;";
+
+      ExpressionImpl expression = new ExpressionImpl();
+
+      Assert.assertEquals(expression.parse(sourceCode), "");
+
+      Assert.assertNotNull(expression.getLeft());
+
+      Assert.assertEquals(expression.getOperator().getOperator(), "=");
+
+
+      Assert.assertTrue(expression.getLeft() instanceof TypeExpressionImpl);
    }
 }

@@ -53,7 +53,7 @@ public class ExpressionImpl extends AbstractExpression implements Expression {
          temp = Util.trimTarget(temp, Operators.LEFT_BRACKET);
          left = new ExpressionImpl();
          temp = left.parse(temp);
-         sourceCode = Util.trimTarget(temp, Operators.RIGHT_BRACKET);
+         temp = Util.trimTarget(temp, Operators.RIGHT_BRACKET);
       } else {
          left = ExpressionFactory.getExpression(temp);
          temp = left.parse(temp);
@@ -61,15 +61,15 @@ public class ExpressionImpl extends AbstractExpression implements Expression {
 
       operator = new Operator();
 
-      sourceCode = operator.parse(temp);
+      temp = operator.parse(temp);
 
       if (!operator.isCalculateOperator()) {
          right = null;
-         return sourceCode;
+         return temp;
       }
 
       right = new ExpressionImpl();
-      return right.parse(sourceCode);
+      return right.parse(temp);
    }
 
    @Override

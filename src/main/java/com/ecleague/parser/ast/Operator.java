@@ -32,6 +32,7 @@ public class Operator implements SourceParser {
       CALCULATE_OPERATORS.add(Operators.GT);
       CALCULATE_OPERATORS.add(Operators.LT_EQ);
       CALCULATE_OPERATORS.add(Operators.GT_EQ);
+      CALCULATE_OPERATORS.add(Operators.ASSIGN);
    }
 
    /**
